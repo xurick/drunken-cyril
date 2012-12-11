@@ -17,7 +17,7 @@ MdotApp::Application.configure do
   config.assets.js_compressor = :uglifier
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -35,7 +35,7 @@ MdotApp::Application.configure do
   # token and using it to sign in as the corresponding user. This attack was publicized by the 
   # Firesheep application, which showed that many high-profile sites (including Facebook and Twitter) 
   # were vulnerable. The solution is to use site-wide SSL.
-  config.force_ssl = true
+  #config.force_ssl = true
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
