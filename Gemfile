@@ -29,13 +29,6 @@ gem 'miro', :git => 'git://github.com/rickkoh/miro.git'
 gem 'fastimage', '1.2.13'
 gem 'font-awesome-sass-rails', '~> 2.0.0.0'
 gem 'rmagick', '~> 2.13.1'
-gem "devise", "~> 2.1.2"
-gem "cancan", "~> 1.6.8"
-gem "rolify", "~> 3.2.0"
-gem "hominid", "~> 3.0.5"
-gem "google_visualr", "~> 2.1.3"
-gem "jquery-datatables-rails", "~> 1.11.0"
-gem "simple_form", "~> 2.0.2"
 gem "validates_as_phone_number", "~> 0.7.5"
 #gem "mercury-rails", "~> 0.9.0"
 
