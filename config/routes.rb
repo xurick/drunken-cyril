@@ -21,9 +21,9 @@ MdotApp::Application.routes.draw do
   # new, create, and destroy
   resources :sessions, only: [:new, :create, :destroy]
 
-  constraints(Subdomain) do
-    match '/' => 'users#show'
-  end
+  #constraints(Subdomain) do
+    #match '/' => 'users#show'
+  #end
 
   root to: 'main#home'
 
