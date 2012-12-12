@@ -34,10 +34,4 @@ MdotApp::Application.routes.draw do
   # should be invoked using an HTTP DELETE request.
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  match '/help', to: 'main#help'
-
-  match '/save', to: 'main#save'
-
-  match '/load', to: 'main#load'
-
 end
