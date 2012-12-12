@@ -12,4 +12,6 @@
  *= require main
  *= require theme
  *= require animate
+ *= require signup
+ *= require signin
 */

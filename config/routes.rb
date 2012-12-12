@@ -6,6 +6,8 @@ MdotApp::Application.routes.draw do
 
   #mount Mercury::Engine => '/'
 
+  root :to => 'main#home'
+
   post "sites/create"
 
   get "sites/show"
@@ -24,8 +26,6 @@ MdotApp::Application.routes.draw do
   #constraints(Subdomain) do
     #match '/' => 'users#show'
   #end
-
-  root to: 'main#home'
 
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
