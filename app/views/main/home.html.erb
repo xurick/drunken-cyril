@@ -4,3 +4,18 @@
 <%= render 'layouts/footer' %>
 <%# render 'pricing' %>
 <%# render 'testimonials' %>
+
+<!-- passing data from Rails to JS -->
+<% if current_user != nil %>
+  <% userid = current_user.id %>
+<% else %>
+  <% userid = '' %>
+<% end %>
+
+<div id='current-userid' data-current-userid="<%= userid %>" class='hidden'></div>
+
+<div class='hidden'>
+  <div class='desktop'>
+    <div class='screen'></div>
+  </div>
+</div>

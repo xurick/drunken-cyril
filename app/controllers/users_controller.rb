@@ -25,16 +25,30 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    # if parame[:user] not empty, then it means it was created using the proper form
+    # otherwise a request to create guest user
+    @user = params[:user] ? User.new(params[:user]) : User.new_guest
     if @user.save
+      # migrate guest data over to new non-guest user
+      # current_user.move_to(@user) if current_user && current_user.guest?
 
-      # signing in the user upon signup
+      # sign in the user upon signup
+      logger.debug "======== about to call sign_in "
       sign_in @user
-
-      flash[:success] = 'Congratulations on making the first step to mobilify your site!'
-      redirect_to @user
+      if request.xhr?
+        # respond to ajax request, ie create guest user via ajax post
+        render :text => @user.id
+      else
+        # respond to normal request, ie sign up via proper form
+        flash[:success] = 'Congratulations on making the first step to make your site mobile friendly!'
+        redirect_to @user
+      end
     else
-      render 'new'
+      if request.xhr?
+        render :text => ''
+      else
+        render 'new'
+      end
     end
   end
 

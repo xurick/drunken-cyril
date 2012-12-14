@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117081643) do
+ActiveRecord::Schema.define(:version => 20121213051147) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street1"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(:version => 20121117081643) do
   end
 
   add_index "business_hours", ["user_id"], :name => "index_business_hours_on_user_id"
+
+  create_table "mercury_images", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -69,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20121117081643) do
     t.string   "remember_token"
     t.string   "site_url"
     t.string   "phone_number"
+    t.boolean  "guest"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

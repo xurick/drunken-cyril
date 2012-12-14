@@ -20,7 +20,11 @@
             <li><%= link_to 'Dashboard', current_user %></li>
             <li><%= link_to 'Settings', edit_user_path(current_user) %></li>
             <li>
-            <%= link_to 'Sign out', signout_path, method: 'delete', class: 'btn-header' %>
+            <% if current_user.guest? %>
+              <%= link_to 'Save & continue', signup_path, class: 'btn-header' %>
+            <% else %>
+              <%= link_to 'Sign out', signout_path, method: 'delete', class: 'btn-header' %>
+            <% end %>
             </li>
 
           <% else %>

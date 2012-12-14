@@ -2,7 +2,6 @@ module SessionsHelper
 
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
-
     # using 'self', making current_user accessible in both controllers and views
     self.current_user = user
   end
@@ -12,7 +11,11 @@ module SessionsHelper
   end
 
   def current_user
+    debugger
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+    #TODO what the fuck? this setter implicitly returns TrueClass to view
+    # if @current_user is nil? as opposed to returning NilClass 
+    return @current_user
   end
 
   def current_user?(user)

@@ -1,11 +1,22 @@
 var mdot = (function(my, $) {
 
   $(function() {
+    window.currentUserId = $('#current-userid').data('current-userid');
+
     $('.carousel').carousel({
       interval:5000
     });
 
     $('#action').click(function() {
+      //if no current user, create a guest account
+      if(window.currentUserId === '') {
+        $.post('/users', function(data) {
+          // should get back the ID of the newly created guest user
+          // TODO if data is empty, guest user creation fails, what to do
+          window.currentUserId = data
+        });
+      }
+
       var anchor = document.createElement('a');
       var url = $('#url_input').val();
       anchor.href = url;
@@ -26,8 +37,7 @@ var mdot = (function(my, $) {
     return function(markup) {
       if(markup == '') {
         if(markup == '') {
-          // TODO: hardcoded value
-          window.location = 'users/' + window.currentUser.id;
+          window.location = 'users/' + window.currentUserId;
         }
       } else {
 
@@ -56,7 +66,7 @@ var mdot = (function(my, $) {
           mobilePage.url = anchor.href;
           $.post('sites/create', mobilePage, function() {
             desktopFrame.parentNode.removeChild(desktopFrame);
-            window.location = 'users/' + window.currentUser.id;
+            window.location = 'users/' + window.currentUserId;
 
           });
         });

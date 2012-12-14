@@ -15,18 +15,19 @@ class MainController < ApplicationController
 
           # dirty hack adding '/' because the DB url field is populated by using anchor.href
           # which automatically adds the '/'
-          if current_user.sites.find_by_url(url+'/').nil?
+          if current_user.sites && !current_user.sites.find_by_url(url+'/').nil?
+            # this site already converted
+            render :json => JSON.dump('')
+          else
+            # no matching mobile sites yet
             markup_string = open(url).read
             if markup_string.encoding.name != 'UTF-8'
               markup_string.force_encoding('utf-8')
             end
             render :json => JSON.dump(markup_string)
-          else
-            render :json => JSON.dump('')
           end
 
         when 'dcolor'
-
           # setting different path only for development, not Heroku production
           if Rails.env.development?
             # refer to Miro doc, setting correct path for imagemagick

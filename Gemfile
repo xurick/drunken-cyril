@@ -11,6 +11,7 @@ gem 'bcrypt-ruby', '~> 3.0.1'
 
 group :development, :test do
   gem 'sqlite3', '~> 1.3.6'
+  gem 'debugger', '~> 1.2.2'
 end
 
 group :assets do

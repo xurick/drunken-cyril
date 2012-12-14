@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   # these attributes are updatable via update_attributes method
   attr_accessible :name, :email, :password, :password_confirmation, :phone_number, :addresses_attributes
 
-  # new in Rails 3, takes care of the authentication logic using bcrypt
-  has_secure_password
+  #has_secure_password
 
   # a user can have many addresses, which will be destroyed when the user is destroyed
   has_many :addresses, dependent: :destroy
@@ -25,9 +24,7 @@ class User < ActiveRecord::Base
   end 
 
   # before_save is a callback that gets called before the record is saved to DB
-  # downcasing email is to enforce uniqueness as well
-  before_save { |user| user.email = email.downcase }
-  before_save :create_remember_token
+  before_save :before_save_stuff
 
   # http://stackoverflow.com/questions/6101628/regex-to-validate-user-names-with-at-least-one-letter-and-no-special-characters
   # http://guides.rubyonrails.org/active_record_validations_callbacks.html
@@ -36,23 +33,46 @@ class User < ActiveRecord::Base
 
   # make sure the name field must exist, and the length of it must
   # not exceed 51, when a new record is created etc.
-  validates :name, presence: true, length: { maximum: 50 }, format: { with: VALID_NAME_REGEX }
+  validates :name, presence: true, length: { maximum: 50 }, format: { with: VALID_NAME_REGEX }, unless: :guest?
 
   # to guarantee real uniqueness of email, need to create a DB index on the email column
   # and require that the index be unique
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true, unless: :guest?
 
   # http://stackoverflow.com/questions/8170422/attr-accessor-and-password-validation-on-update
   # the :if => :password part is to prevent validation from triggered for update
-  validates :password, presence: true, length: { minimum: 6 }, :if => :password
-  validates :password_confirmation, presence: true, :if => :password_confirmation
+  #validates :password_digest, presence: true, unless: :guest?
+  #validates :password, presence: true, length: { minimum: 6 }, :if => :password, unless: :guest?
+  #validates :password_confirmation, presence: true, :if => :password_confirmation, unless: :guest?
   # https://github.com/travisjeffery/validates_phone_number
   validates_as_phone_number :phone_number, :message => 'Invalid phone number format', :allow_nil => true
 
+  validates_presence_of :password_digest, unless: :guest?
+  validates_confirmation_of :password
+
+  # override has_secure_password to customize validation until Rails 4.
+  require 'bcrypt'
+  attr_reader :password
+  include ActiveModel::SecurePassword::InstanceMethodsOnActivation
+
+  def move_to(user)
+    sites.update_all(user_id: user.id)
+    addresses.update_all(user_id: user.id)
+    business_hours.update_all(user_id: user.id)
+  end
+
   private
 
-  def create_remember_token
+  def self.new_guest
+    new { |u| u.guest = true }
+  end
+
+  def before_save_stuff
+    if !guest
+      # downcasing email is to enforce uniqueness as well
+      self.email = email.downcase
+    end
     self.remember_token = SecureRandom.urlsafe_base64
-  end 
+  end
 
 end
