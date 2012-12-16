@@ -30,10 +30,9 @@ class UsersController < ApplicationController
     @user = params[:user] ? User.new(params[:user]) : User.new_guest
     if @user.save
       # migrate guest data over to new non-guest user
-      # current_user.move_to(@user) if current_user && current_user.guest?
+      current_user.move_to(@user) if current_user && current_user.guest?
 
       # sign in the user upon signup
-      logger.debug "======== about to call sign_in "
       sign_in @user
       if request.xhr?
         # respond to ajax request, ie create guest user via ajax post

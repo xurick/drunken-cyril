@@ -56,6 +56,8 @@ class User < ActiveRecord::Base
   include ActiveModel::SecurePassword::InstanceMethodsOnActivation
 
   def move_to(user)
+    # note: this does not create a new 'sites' record, but mere update the foreign key
+    # i.e. modify the association to be with the newly create user
     sites.update_all(user_id: user.id)
     addresses.update_all(user_id: user.id)
     business_hours.update_all(user_id: user.id)

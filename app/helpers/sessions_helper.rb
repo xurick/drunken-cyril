@@ -11,7 +11,6 @@ module SessionsHelper
   end
 
   def current_user
-    debugger
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
     #TODO what the fuck? this setter implicitly returns TrueClass to view
     # if @current_user is nil? as opposed to returning NilClass 

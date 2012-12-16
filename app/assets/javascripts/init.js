@@ -9,10 +9,10 @@ var mdot = (function(my, $) {
 
     $('#action').click(function() {
       //if no current user, create a guest account
+      var createUserResult;
       if(window.currentUserId === '') {
-        $.post('/users', function(data) {
+        createUserResult = $.post('/users', function(data) {
           // should get back the ID of the newly created guest user
-          // TODO if data is empty, guest user creation fails, what to do
           window.currentUserId = data
         });
       }
@@ -22,13 +22,17 @@ var mdot = (function(my, $) {
       anchor.href = url;
       $(this).toggleClass('loading disabled');
       // get markup from arbitrary domains, side-stepping same-orig restriction by using jsonp
-      $.ajax({
-        data: { 
-          get: 'markup',
+      $.when(createUserResult).then(function() {
+        $.ajax({
+          data: { 
+            get: 'markup',
           url: url 
-        },
-        dataType: 'json',
-      }).done(renderMarkup(anchor));
+          },
+          dataType: 'json',
+        }).done(renderMarkup(anchor));
+      }, function() {
+        //TODO if createUserResult failed, what to do?
+      });
     });
   });
 
