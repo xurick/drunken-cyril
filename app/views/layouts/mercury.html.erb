@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Site Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    'application', 'mercury', :media => 'all' %>
+    <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic" %>
+    <%= javascript_include_tag 'application', 'mercury' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <a href="#" class="scrolltop" style="display: none; ">
+      <span>up</span>
+    </a>
+
+    <%= render 'layouts/header' %>
+
+    <div class='container'>
+      <div class='row'>
+        <div class='span8'>
+          <div id='main'>
+          </div>
+        </div>
+        <div class='span4'>
+          <div class='mobile'>
+            <div class='screen' id='mobile_screen'>
+              <%#the editor frame should go here%>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      // Set to the url that you want to save any given page to, leave null for default handling.
+      var saveUrl = '/sites/update';
+
+      // Instantiate the PageEditor
+      new Mercury.PageEditor(saveUrl, {
+        saveStyle:  null, // 'form', or 'json' (default json)
+        saveMethod: null, // 'PUT', or 'POST', (create, vs. update -- default PUT)
+        visible:    true,  // boolean - if the interface should start visible or not
+        iframeSrcUrl: '/sites/show',
+        appendTo: '#mobile_screen',
+        toolbarOptions: {
+          appendTo: '#main'
+        },
+        statusbarOptions: {
+          appendTo: '#main'
+        }
+      });
+    </script>
+  </body>
+</html>

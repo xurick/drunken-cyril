@@ -1,0 +1,47 @@
+<%= simple_form_for(@user, :html => { :class => 'form-horizontal'}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <fieldset>
+    <legend>Your phone number</legend>
+    <%= f.input :phone_number %>
+    <legend>Your address</legend>
+    <%= f.simple_fields_for :addresses do |addresses_form| %>
+      <%= addresses_form.input :street1 %>
+      <%= addresses_form.input :street2 %>
+      <%= addresses_form.input :city %>
+      <%= addresses_form.input :state %>
+      <%= addresses_form.input :zipcode %>
+    <% end %>
+    <legend>Your hours of operation</legend>
+    <%# modeled after http://jsfiddle.net/urQc4/%>
+
+    <% days_of_week = %w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday) %>
+    <% days_of_week.each do |day_of_week| %>
+      <%= f.simple_fields_for "#{day_of_week.downcase}_business_hours".to_sym do |hours_form| %>
+        <div class='control-group'>
+        <%= f.label day_of_week + ' ' %>
+          <div class='controls'>
+            <%= hours_form.input_field :open_time, 
+              :default => Time.now.change(:hour => 21),
+              :label => false, 
+              :simple_time_select => true,
+              :minute_interval => 60,
+              :time_separator => '' %>
+            <%= hours_form.input_field :close_time, 
+              :default => Time.now.change(:hour => 21),
+              :label => false, 
+              :simple_time_select => true,
+              :minute_interval => 60,
+              :time_separator => ' to ' %>
+          </div>
+        </div>
+        <%= hours_form.input :closed, 
+          :label => false,
+          :inline_label => 'Closed?'%>
+      <% end %>
+    <% end %>
+
+    <div class='form-actions'>
+      <%= f.submit 'Save changes' %>
+    </div>
+  </fieldset>
+<% end %>
