@@ -65,4 +65,13 @@ class MainController < ApplicationController
       end
     end
   end
+
+  def test
+    @editor_mode = true if params[:mercury_frame] == 'true'
+    render :test1 if request.fullpath == '/frame'
+  end
+
+  def test1
+    render :layout => false
+  end
 end

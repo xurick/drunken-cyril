@@ -18,5 +18,4 @@
 //= require init
 //= require util
 //= require walk
-//= require users
 //= require sites

@@ -28,9 +28,16 @@ class SitesController < ApplicationController
   end
 
   def update
-    site = current_user.sites.last
-    # ...
-    render text: ''
+    url = session[:current_url]
+    if url.nil?
+      head :not_found
+    else
+      site = current_user.sites.find_by_url(url+'/')
+      site.logo_img = params[:content][:logo_img][:value]
+      site.content = params[:content][:site_content][:value]
+      site.save!
+      render text: ''
+    end
   end
 
   def test

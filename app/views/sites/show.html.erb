@@ -1,5 +1,7 @@
 <% content_for :logo_img do %>
-  <%= raw @site.logo_img %>
+  <div id='logo_img' data-mercury='full'>
+    <%= raw @site.logo_img %>
+  </div>
 <% end %>
 
 <% content_for :nav_menu do %>
@@ -12,4 +14,6 @@
   </ul>
 <% end %>
 
-<%= raw @site.content %>
+<div id='site_content' data-mercury='full'>
+  <%= raw @site.content %>
+</div>

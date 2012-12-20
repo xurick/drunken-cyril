@@ -1,10 +1,10 @@
 MdotApp::Application.routes.draw do
 
-  #namespace :mercury do
-    #resources :images
-  #end
+  namespace :mercury do
+    resources :images
+  end
 
-  #mount Mercury::Engine => '/'
+  mount Mercury::Engine => '/'
 
   root :to => 'main#home'
 
@@ -12,6 +12,7 @@ MdotApp::Application.routes.draw do
 
   get "sites/show"
 
+  # temporary for Cafe Ori test
   get "sites/test"
 
   put "sites/update"
@@ -24,7 +25,7 @@ MdotApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   #constraints(Subdomain) do
-    #match '/' => 'users#show'
+  #match '/' => 'users#show'
   #end
 
   match '/signup', to: 'users#new'
@@ -33,5 +34,9 @@ MdotApp::Application.routes.draw do
   # Note the use of via: :delete for the signout route, which indicates that it 
   # should be invoked using an HTTP DELETE request.
   match '/signout', to: 'sessions#destroy', via: :delete
+
+  # testing
+  match '/test', to: 'main#test'
+  match '/frame', to: 'main#test1'
 
 end

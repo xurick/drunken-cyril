@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_filter :correct_user, except: [:new, :create]
 
   def show
+
     # passing in hash condition to the where method
     # @user = User.where(:name => request.subdomain).first || User.find(params[:id])
     
