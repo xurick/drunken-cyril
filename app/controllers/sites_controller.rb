@@ -1,14 +1,15 @@
 class SitesController < ApplicationController
   layout 'mobile'
 
-  before_filter :signed_in_user, :except => :test
+  before_filter :signed_in_user, :except => [:show, :test]
 
   def create
     @site = current_user.sites.build(
       :url => params[:url],
       :logo_img => params[:logo],
       :nav_menu => params[:menu],
-      :content => params[:content]
+      :content => params[:content],
+      :subdomain => extract_name(params[:url])
     )
 
     if @site.save
@@ -19,11 +20,15 @@ class SitesController < ApplicationController
   end
 
   def show
-    url = session[:current_url]
-    if url.nil?
-      head :not_found
+    if request.subdomain.present? && request.subdomain != 'www'
+      @site = Site.find_by_subdomain!(request.subdomain)
     else
-      @site = current_user.sites.find_by_url(url+'/')
+      url = session[:current_url]
+      if url.nil?
+        head :not_found
+      else
+        @site = current_user.sites.find_by_url(url+'/')
+      end
     end
   end
 
@@ -43,4 +48,13 @@ class SitesController < ApplicationController
   def test
     render :layout => false
   end
+
+  private
+
+  def extract_name(url)
+    host = URI.parse(url).host
+    parts = host.split('.')
+    return host.start_with?('www') ? parts[1] : parts[0]
+  end
+
 end

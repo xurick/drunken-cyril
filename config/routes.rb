@@ -6,6 +6,10 @@ MdotApp::Application.routes.draw do
 
   mount Mercury::Engine => '/'
 
+  constraints(Subdomain) do
+    match '/' => 'sites#show'
+  end
+
   root :to => 'main#home'
 
   post "sites/create"
@@ -23,10 +27,6 @@ MdotApp::Application.routes.draw do
   # Since we have no need to show or edit sessions, we’ve restricted the actions to 
   # new, create, and destroy
   resources :sessions, only: [:new, :create, :destroy]
-
-  #constraints(Subdomain) do
-  #match '/' => 'users#show'
-  #end
 
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'

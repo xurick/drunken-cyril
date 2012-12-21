@@ -6,12 +6,12 @@ class UsersController < ApplicationController
 
   def show
 
-    # passing in hash condition to the where method
-    # @user = User.where(:name => request.subdomain).first || User.find(params[:id])
-    
     # creating the addresses instance without saving to DB, if the user does not yet have
     # an addresses record
     @user.addresses.build if @user.addresses.blank?
+
+    # TODO: hardcoded value
+    @site = @user.sites.find_by_user_id(@user.id)
 
     # ditto for weekday hours
     days_of_week = %w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday) 
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   private
 
   def correct_user
-    @user = User.where(:name => request.subdomain).first || User.find(params[:id])
+    @user = User.find(params[:id])
     unless current_user?(@user)
       # the following flash does not work, why?
       flash[:error] = 'You cannot access someone else\'s account'
