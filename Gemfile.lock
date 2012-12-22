@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:budwhite/mercury.git
+  remote: git://github.com/budwhite/mercury.git
   revision: dd28610b02e1435bcd0b6e937f4da7abbb9e8a57
   specs:
     mercury-rails (0.9.0)

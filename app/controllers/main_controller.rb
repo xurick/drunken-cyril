@@ -27,15 +27,9 @@ class MainController < ApplicationController
           end
 
         when 'dcolor'
-          # setting different path only for development, not Heroku production
-          if Rails.env.development?
-            # refer to Miro doc, setting correct path for imagemagick
-            if File.exists?('/usr/local/bin/convert')
-              Miro.options[:image_magick_path] = '/usr/local/bin/convert'
-            else
-              Miro.options[:image_magick_path] = "c:/ImageMagick/convert"
-            end
-          end
+          #if Rails.env.development?
+          Miro.options[:image_magick_path] = '/usr/local/bin/convert' if File.exists?('/usr/local/bin/convert')
+          #end
 
           color_array = Miro::DominantColors.new(url).to_rgba
 
