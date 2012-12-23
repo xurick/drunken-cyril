@@ -1,10 +1,15 @@
 $iphone_img_url: 'iphone5_320px.png';
 
+h2.section_header {
+  text-align:left;
+}
+
 .mobile {
   width: 406px;
   height: 951px;
   background-image: url($iphone_img_url);
   background-size: 100%;
+  margin-top:30px;
   margin-left:auto;
   margin-right:auto;
   position:relative;

@@ -78,6 +78,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_sites
+  end
+
   private
 
   def correct_user

@@ -20,13 +20,21 @@ var mdot = (function(my, $) {
       var anchor = document.createElement('a');
       var url = $('#url_input').val();
       anchor.href = url;
-      $(this).toggleClass('loading disabled');
+      $(this).text('Converting ...').toggleClass('loading disabled');
+      var ifr = $('iframe.preview');
+      if(ifr.length == 1) {
+        ifr.animate({ opacity: 0.1 }, 1000);
+        $('#mobile_screen').spin({color:'#fff', radius:40, length:30, lines:17, width:11, speed:1});
+      }
+
       // get markup from arbitrary domains, side-stepping same-orig restriction by using jsonp
+      // using 'when'..'then' because user needs to be created before we can assign site
       $.when(createUserResult).then(function() {
         $.ajax({
+          url: '/main/home/',
           data: { 
             get: 'markup',
-          url: url 
+            url: url 
           },
           dataType: 'json',
         }).done(renderMarkup(anchor));
@@ -39,9 +47,14 @@ var mdot = (function(my, $) {
   // http://stackoverflow.com/questions/939032/jquery-pass-more-parameters-into-callback
   function renderMarkup(anchor) {
     return function(markup) {
-      if(markup == '') {
-        if(markup == '') {
+      if(/^\s*\d+\s*$/.test(markup)) { //if markup is a number
+        var id = markup;
+        if(window.location.pathname.indexOf('users') == -1) {//we are at home page
           window.location = 'users/' + window.currentUserId;
+        }
+        else {//we are already at dashboard, so highlight the row and switch preview
+          var selector = "tr[id='row_" + id + "']";
+          $(selector).click();
         }
       } else {
 
@@ -68,16 +81,40 @@ var mdot = (function(my, $) {
         $(desktopFrame).load(function() {
           var mobilePage = mdot.mobilize(desktopDoc.body);
           mobilePage.url = anchor.href;
-          $.post('sites/create', mobilePage, function() {
+          $.post('/sites', mobilePage, function(data) {
             desktopFrame.parentNode.removeChild(desktopFrame);
-            window.location = 'users/' + window.currentUserId;
-
+            if(window.location.pathname.indexOf('users') == -1) {//we are at home page
+              window.location = 'users/' + window.currentUserId;
+            }
+            else {//we are already at dashboard, so insert row and switch preview
+              // data should be the id of the newly created site record
+              $('.table tr:last').after(newRowMarkup(data));
+              var selector = "tr[id='row_" + data.site_id + "']";
+              $(selector).click();
+              $('a#action').text('Take action now!').toggleClass('loading disabled');
+              $('iframe.preview').css('opacity', 1);
+              $('#mobile_screen').spin(false);
+            }
           });
         });
         desktopDoc.write(markup);
         desktopDoc.close();
       }
     }
+  }
+
+  function newRowMarkup(data) {
+    var id = data.site_id;
+    var name = data.site_name;
+    var row_id = 'row_' + id;
+
+    return '<tr id=' + row_id + '>' +
+      "<td class='text-success'><strong>" + name + '</strong></td>' +
+      "<td><a class='btn btn-success' href='/editor/" + id + "'><i class='icon-edit icon-white'></i> Edit</td>" +
+      "<td><a class='btn btn-success' href='#'><i class='icon-globe icon-white'></i> Live</a></td>" +
+      "<td><a class='btn btn-success' href='#'><i class='icon-facetime-video icon-white'></i> Traffic</a></td>" +
+      "<td><a class='btn btn-danger' href='#'><i class='icon-trash icon-white'></i> Delete</a></td>" +
+      "</tr>";
   }
 
   return my;

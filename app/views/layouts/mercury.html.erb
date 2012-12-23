@@ -19,8 +19,29 @@
     <div class='container'>
       <div class='row'>
         <div class='span8'>
-          <div id='main'>
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#template" data-toggle="tab">Templates</a></li>
+            <li><a href="#edit" data-toggle="tab">Content Edits</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade active in" id="template">
+              <div id="styles">
+                <ul class='thumbnails'>
+                  <% theme = %w(A B C D E F G H I J K) %>
+                  <% theme.each do |t| %>
+                    <li class='span2'>
+                    <%= link_to(image_tag("#{t}.png"), '#', id:"theme#{t}", class:'thumbnail')%>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="edit">
+              <div id='edit_toolbar'>
+              </div>
+            </div>
           </div>
+
         </div>
         <div class='span4'>
           <div class='mobile'>
@@ -34,20 +55,21 @@
 
     <script type="text/javascript">
       // Set to the url that you want to save any given page to, leave null for default handling.
-      var saveUrl = '/sites/update';
+      // this will be a POST request
+      var saveUrl = "<%= site_path(request.params[:requested_uri].to_i) %>";
 
       // Instantiate the PageEditor
       new Mercury.PageEditor(saveUrl, {
         saveStyle:  null, // 'form', or 'json' (default json)
         saveMethod: null, // 'PUT', or 'POST', (create, vs. update -- default PUT)
         visible:    true,  // boolean - if the interface should start visible or not
-        iframeSrcUrl: '/sites/show',
+        iframeSrcUrl: "<%= site_path(request.params[:requested_uri].to_i) %>",
         appendTo: '#mobile_screen',
         toolbarOptions: {
-          appendTo: '#main'
+          appendTo: '#edit_toolbar'
         },
         statusbarOptions: {
-          appendTo: '#main'
+          appendTo: '#edit_toolbar'
         }
       });
     </script>

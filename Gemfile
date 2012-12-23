@@ -17,6 +17,7 @@ end
 # moving bootstrap out of :assets group in order to faciliate
 # production live compiling
 gem 'bootstrap-sass', '~> 2.2.1.1'
+gem "spinjs-rails", "~> 0.0.4"
 
 group :assets do
   gem 'bootswatch-rails', '~> 0.1.0'

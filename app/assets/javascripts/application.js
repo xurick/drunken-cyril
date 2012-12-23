@@ -13,9 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.url
+//= require jquery.spin
 //= require bootstrap
 //= require theme
 //= require init
 //= require util
 //= require walk
 //= require sites
+//= require users

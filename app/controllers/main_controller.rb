@@ -9,14 +9,12 @@ class MainController < ApplicationController
         case intent
 
         when 'markup'
-          #if reset_session, then the session[:current_url] does not persiste. not sure why
-          #reset_session
-          session[:current_url] = url
           # dirty hack adding '/' because the DB url field is populated by using anchor.href
           # which automatically adds the '/'
           if current_user.sites && !current_user.sites.find_by_url(url+'/').nil?
             # this site already converted
-            render :json => JSON.dump('')
+            site = current_user.sites.find_by_url(url+'/')
+            render :json => JSON.dump(site.id)
           else
             # no matching mobile sites yet
             markup_string = open(url).read

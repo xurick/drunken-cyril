@@ -13,7 +13,8 @@ class SitesController < ApplicationController
     )
 
     if @site.save
-      head :ok
+      #render :text => @site.id.to_s
+      render :json => { :site_id => @site.id, :site_name => @site.subdomain }
     else
       head :bad_request
     end
@@ -23,26 +24,22 @@ class SitesController < ApplicationController
     if request.subdomain.present? && request.subdomain != 'www'
       @site = Site.find_by_subdomain!(request.subdomain)
     else
-      url = session[:current_url]
-      if url.nil?
-        head :not_found
-      else
-        @site = current_user.sites.find_by_url(url+'/')
-      end
+      @site = current_user.sites.find(params[:id])
     end
   end
 
   def update
-    url = session[:current_url]
-    if url.nil?
-      head :not_found
-    else
-      site = current_user.sites.find_by_url(url+'/')
-      site.logo_img = params[:content][:logo_img][:value]
-      site.content = params[:content][:site_content][:value]
-      site.save!
-      render text: ''
-    end
+    site = current_user.sites.find(params[:id])
+    site.logo_img = params[:content][:logo_img][:value]
+    site.content = params[:content][:site_content][:value]
+    site.save!
+    render text: ''
+  end
+
+  def destroy
+    current_user.sites.find(params[:id]).destroy
+    flash[:success] = 'Website deleted.'
+    redirect_to current_user
   end
 
   def test

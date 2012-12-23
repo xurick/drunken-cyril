@@ -5,7 +5,7 @@ $(function() {
 });
 
 function changeTheme(theme) {
-  var foo = $('.preview').contents().find('#home'); 
+  var foo = $('#mobile_screen > iframe').contents().find('#home'); 
 
   //reset all the buttons, header/footer and page widgets
   var button = foo.find('.ui-btn');

@@ -368,6 +368,7 @@ var mdot = (function(parent, $) {
     var colors;
 
     $.ajax({
+      url: '/main/home/',
       async:false,
       data: {
         get: 'dcolor',
@@ -432,6 +433,7 @@ var mdot = (function(parent, $) {
     var size;
 
     $.ajax({
+      url: '/main/home/',
       async:false,
       data: {
         get: 'imgsize',
