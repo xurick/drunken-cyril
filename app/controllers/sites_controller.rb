@@ -33,12 +33,12 @@ class SitesController < ApplicationController
     if params.has_key?(:content)
       site.logo_img = params[:content][:logo_img][:value]
       site.content = params[:content][:site_content][:value]
-    end
-    if params.has_key?(:site)
+    elsif params.has_key?(:site)
       site.subdomain = params[:site][:subdomain]
     end
     site.save!
-    render text: ''
+    # passing the current user ID to JS to redirect back to dashboard
+    render text: current_user.id.to_s
   end
 
   def destroy

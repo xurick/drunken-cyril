@@ -56,6 +56,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    debugger
     days_of_week = %w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday) 
     days_of_week.each do |day_of_week| 
       params[:user][(day_of_week.downcase+'_business_hours_attributes').to_sym][:"0"][:open_time] = Time.parse(params[:user][(day_of_week.downcase+'_business_hours_attributes').to_sym][:"0"][:"open_time(5i)"])

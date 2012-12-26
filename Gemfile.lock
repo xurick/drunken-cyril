@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/budwhite/mercury.git
-  revision: dd28610b02e1435bcd0b6e937f4da7abbb9e8a57
+  revision: bf01f1434f7eba09ffd794db236ae4dd5305ed85
   specs:
     mercury-rails (0.9.0)
       coffee-rails (~> 3.2.2)

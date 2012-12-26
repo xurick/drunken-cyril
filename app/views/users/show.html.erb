@@ -25,7 +25,7 @@
                 <%= render :partial => 'goLiveModal', :locals => { :site => site } %>
               </td>
               <td>
-                <a class='btn btn-success' href='#'><i class='icon-facetime-video icon-white'></i> Traffic</a>
+                <a class='btn btn-success disabled' href='#'><i class='icon-facetime-video icon-white'></i> Traffic</a>
               </td>
               <td>
                 <%= link_to(site, class: 'btn btn-danger', method: :delete, data: { confirm: site.subdomain + '.com' }) do %>
