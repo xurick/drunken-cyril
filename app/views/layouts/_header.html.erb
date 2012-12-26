@@ -9,7 +9,11 @@
         <span class="icon-bar"></span>
       </a>
 
-      <%= link_to image_tag('logo_green.png', :alt => 'logo'), root_path, class: 'brand', :'data-section' => 'body' %>
+      <%= link_to root_path, class: 'brand', :'data-section' => 'body' do %>
+        <%= image_tag('santa_hat_24.png', :style => 'position: relative; right: -24px; margin-top: -21px') %>
+        <%= image_tag('logo_green.png', :alt => 'logo') %>
+      <% end %>
+
       <div class='nav-collapse collapse'>
         <ul class='nav pull-right'>
           <li><%= link_to "Features", '#', :'data-section' => '#features', class: 'scroller' %></li>

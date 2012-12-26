@@ -30,8 +30,13 @@ class SitesController < ApplicationController
 
   def update
     site = current_user.sites.find(params[:id])
-    site.logo_img = params[:content][:logo_img][:value]
-    site.content = params[:content][:site_content][:value]
+    if params.has_key?(:content)
+      site.logo_img = params[:content][:logo_img][:value]
+      site.content = params[:content][:site_content][:value]
+    end
+    if params.has_key?(:site)
+      site.subdomain = params[:site][:subdomain]
+    end
     site.save!
     render text: ''
   end

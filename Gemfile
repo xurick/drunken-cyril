@@ -25,8 +25,6 @@ group :assets do
   gem 'uglifier', '~> 1.3.0'
 end
 
-gem 'win32console', :platforms => :mingw
-
 gem 'jquery-rails', '~> 2.1.3'
 gem 'jquery_mobile_rails', '~> 1.2.0'
 gem 'miro', '~> 0.2.2'

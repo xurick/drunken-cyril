@@ -18,13 +18,17 @@
                 <% end %>
               </td>
               <td>
-                <a class='btn btn-success' href='#'><i class='icon-globe icon-white'></i> Live</a>
+                <% modalIdSelector = '#goLiveModal_' + site.subdomain %>
+                <%= link_to(modalIdSelector, class: 'btn btn-success', data: { toggle: 'modal' } ) do %>
+                  <i class='icon-globe icon-white'></i> Live
+                <% end %>
+                <%= render :partial => 'goLiveModal', :locals => { :site => site } %>
               </td>
               <td>
                 <a class='btn btn-success' href='#'><i class='icon-facetime-video icon-white'></i> Traffic</a>
               </td>
               <td>
-                <%= link_to(site, class: 'btn btn-danger', method: :delete, data: { confirm: 'You sure?' }) do %>
+                <%= link_to(site, class: 'btn btn-danger', method: :delete, data: { confirm: site.subdomain + '.com' }) do %>
                   <i class='icon-trash icon-white'></i> Delete</a>
                 <% end %>
               </td>
@@ -52,7 +56,8 @@
   </div>
 </div>
 
-<!-- passing data from Rails to JS -->
+<%= render 'confirmDeleteModal' %>
+
 <% if current_user != nil %>
   <% userid = current_user.id %>
 <% else %>

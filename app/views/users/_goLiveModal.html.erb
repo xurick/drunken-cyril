@@ -1,0 +1,18 @@
+<% modalId = 'goLiveModal_' + site.subdomain %>
+<div id=<%= modalId %> class='modal hide fade'>
+  <div class='modal-header'>
+    <button type='button' class='close' data-dismiss='modal'>×</button>
+    <h3>Make it live for <%= site.subdomain %></h3>
+  </div>
+  <div class='modal-body'>
+    <%= form_for site, :remote => true  do |f| %>
+      <%= f.label 'Your mobile URL:' %>
+      <%= f.text_field :subdomain, :placeholder => site.subdomain %>.mbilify.com
+  </div>
+  <div class='modal-footer'>
+    <button class='btn' data-dismiss='modal'>Close</button>
+    <%= f.submit 'Go Live!', :class => 'btn btn-success' %>
+  </div>
+  <% end %>
+
+</div>

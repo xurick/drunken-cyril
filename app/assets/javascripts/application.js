@@ -21,3 +21,31 @@
 //= require walk
 //= require sites
 //= require users
+
+// from http://lesseverything.com/blog/archives/2012/07/18/customizing-confirmation-dialog-in-rails/
+// overriding default Rails handling of confirm dialog
+$(function() {
+  $.rails.allowAction = function(link) {
+    if (!link.attr('data-confirm')) {
+      return true;
+    }
+    $.rails.showConfirmDialog(link);
+    return false;
+  };
+
+  $.rails.confirmed = function(link) {
+    link.removeAttr('data-confirm');
+    return link.trigger('click.rails');
+  };
+
+  $.rails.showConfirmDialog = function(link) {
+    var modalHtml, sitename;
+    sitename = link.attr('data-confirm');
+    modalHtml = $('#confirmDeleteModal');
+    modalHtml.find('span#site_name').html(sitename);
+    $(modalHtml).modal();
+    return $('#confirmDeleteModal .confirm').on('click', function() {
+      return $.rails.confirmed(link);
+    });
+  };
+});
