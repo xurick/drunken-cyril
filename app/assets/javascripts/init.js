@@ -84,10 +84,14 @@ var mdot = (function(my, $) {
           $.post('/sites', mobilePage, function(data) {
             desktopFrame.parentNode.removeChild(desktopFrame);
             if(window.location.pathname.indexOf('users') == -1) {//we are at home page
-              window.location = 'users/' + window.currentUserId;
+              window.location = 'users/' + window.currentUserId + '?site_name=' + data.site_name;
             }
             else {//we are already at dashboard, so insert row and switch preview
               // data should be the id of the newly created site record
+              
+              $('#subdomain').html(data.site_name);
+              $('#welcomeModal').modal();
+
               $('.table tr:last').after(newRowMarkup(data));
               var selector = "tr[id='row_" + data.site_id + "']";
               $(selector).click();

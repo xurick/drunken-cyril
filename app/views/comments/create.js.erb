@@ -1,0 +1,13 @@
+var $msg = $('#form_msg');
+$msg.html('<strong>On snap!</strong> Change a few things up and try submitting again.');
+$msg.append($("<button type='button' class='close' data-dismiss='alert'>&times;</button>"));
+<% if @comment.errors.any? %>
+  $msg.addClass('alert alert-error');
+  var $errors = $('<ul />');
+  <% @comment.errors.full_messages.each do |error| %>
+    $errors.append('<li><%= escape_javascript( error ) %></li>');
+  <% end %>
+  $errors.appendTo($msg);
+<% else %>
+  $msg.addClass('alert alert-success').html('Message sent! Thank you for contacting us.');
+<% end %>

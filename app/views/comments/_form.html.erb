@@ -1,0 +1,22 @@
+<%= form_for @comment, :remote => true, :html => {:class => 'form-horizontal'} do |f| %>
+  <div id='form_msg'></div>
+  <div class='field'>
+    <div class='label_field'>
+      <%= f.label :name %>
+    </div>
+    <%= f.text_field :name %>
+  </div>
+  <div class='field'>
+    <div class='label_field'>
+      <%= f.label :email %>
+    </div>
+    <%= f.text_field :email %>
+  </div>
+  <div class='field'>
+    <div class='label_field'>
+      <%= f.label :content, 'Comments' %>
+    </div>
+    <%= f.text_area :content %>
+  </div>
+  <%= f.submit 'Send', :class => 'btn' %>
+<% end %>

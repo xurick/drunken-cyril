@@ -1,5 +1,9 @@
 class MainController < ApplicationController
   def home
+
+    # creates a comment instance var to be used in the Contact us form
+    @comment = Comment.new
+
     respond_to do |format|
       format.html
       format.json do
