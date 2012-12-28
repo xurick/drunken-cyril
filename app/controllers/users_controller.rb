@@ -79,7 +79,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit_sites
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to root_url(:subdomain => false)
   end
 
   private

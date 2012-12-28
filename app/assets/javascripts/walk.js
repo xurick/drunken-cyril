@@ -176,7 +176,7 @@ var mdot = (function(my, $) {
 
   }
 
-  my.mobilize = function(dtBody) {
+  my.mobilize = function(dtBody, siteUrl) {
 
     var mobilePage = {};
 
@@ -206,9 +206,22 @@ var mdot = (function(my, $) {
       var color = mdot.util.findBgColor(logo);
       if(color != '')
         $clonedLogo.parent().css('background-color', color);
+
+      // if we found a logo, use it
+      mobilePage.logo = $clonedLogo.parent()[0].outerHTML;
+    }
+    else {// no logo found :(
+      var name;
+      var hostParts = $.url(siteUrl).attr('host').split('.');
+      if(hostParts[0] === 'www') {
+        name = hostParts[1]
+      }
+      else {
+        name = hostParts[0]
+      }
+      mobilePage.logo = $('<h1>'+name.toUpperCase()+'</h1>').wrap("<div class='logoWrapper' />")[0].outerHTML;
     }
 
-    mobilePage.logo = $clonedLogo.parent()[0].outerHTML;
 
     var navMenu = mdot.util.findNav(dtBody);
 

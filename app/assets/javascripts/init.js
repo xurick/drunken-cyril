@@ -78,9 +78,13 @@ var mdot = (function(my, $) {
         $('.desktop .screen').append(desktopFrame);
         var desktopDoc = desktopFrame.contentWindow.document;
         desktopDoc.open();
+
         $(desktopFrame).load(function() {
-          var mobilePage = mdot.mobilize(desktopDoc.body);
+
+          var mobilePage = mdot.mobilize(desktopDoc.body, anchor.href);
           mobilePage.url = anchor.href;
+
+          // create new site record
           $.post('/sites', mobilePage, function(data) {
             desktopFrame.parentNode.removeChild(desktopFrame);
             if(window.location.pathname.indexOf('users') == -1) {//we are at home page

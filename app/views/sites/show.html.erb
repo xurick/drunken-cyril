@@ -5,13 +5,15 @@
 <% end %>
 
 <% content_for :nav_menu do %>
-  <ul id='nav' data-role='listview' data-inset='true'>
-    <% @site.nav_menu.each do |menu_item| %>
-      <li>
-      <%= link_to menu_item, '#' %> 
-      </li>
-    <% end %>
-  </ul>
+  <% if !@site.nav_menu.nil? %>
+    <ul id='nav' data-role='listview' data-inset='true'>
+      <% @site.nav_menu.each do |menu_item| %>
+        <li>
+        <%= link_to menu_item, '#' %> 
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
 
 <div id='site_content' data-mercury='full'>
