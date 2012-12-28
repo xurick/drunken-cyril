@@ -1,0 +1,21 @@
+<%# mod = Mobile On Desktop %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mbilify</title>
+    <%= stylesheet_link_tag 'mobile/mod' %>
+    <%= javascript_include_tag 'jquery', 'mobile/mod' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="hand" style="">
+      <div id="iphone">
+        <div id="iphone-overlay"></div>
+        <div id="screen">
+          <iframe class='preview'>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

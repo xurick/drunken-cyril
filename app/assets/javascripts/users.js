@@ -21,5 +21,5 @@ $(function() {
 });
 
 function switchPreview(id) {
-  $('#mobile_screen > iframe').get(0).src = '/sites/'+id
+  $('#mobile_screen > iframe').get(0).src = '/sites/'+ id + '?mobile=1'
 }

@@ -1,0 +1,42 @@
+$hand_img_url: 'hand.png';
+$overlay_img_url: 'iphoneOverlay.png';
+
+#hand {
+  width:320px;
+  height:240px;
+  position:fixed;
+  left:40%;
+  bottom:50%;
+
+  #iphone {
+    width:760px;
+    height:963px;
+    background-image:url($hand_img_url);
+    position:absolute;
+    margin-left:-219px;
+    margin-top:-134px;
+
+    #iphone-overlay {
+      width:340px;
+      height:579px;
+      left:219px;
+      top:14px;
+      position:absolute;
+      background-image:url($overlay_img_url);
+    }
+
+    #screen {
+      width:320px;
+      height:480px;
+      position:absolute;
+      left:219px;
+      top:154px;
+
+      iframe.preview {
+        width:100%;
+        height:100%;
+        border:0;
+      }
+    }
+  }
+}

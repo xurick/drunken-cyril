@@ -22,13 +22,9 @@ MdotApp::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  #post "sites/create"
-  #get "sites/show"
-  #put "sites/update"
-
   # testing
   match '/test', to: 'main#test'
-  match '/frame', to: 'main#test1'
+
   # temporary for Cafe Ori test
   get "sites/test"
 

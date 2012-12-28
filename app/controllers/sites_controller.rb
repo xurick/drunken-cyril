@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  layout 'mobile'
+  layout :mobile_or_not
 
   before_filter :signed_in_user, :except => [:show, :test]
 
@@ -59,4 +59,11 @@ class SitesController < ApplicationController
     return host.start_with?('www') ? parts[1] : parts[0]
   end
 
+  def mobile_or_not
+    if params[:mobile] || mobile_device?
+      'mobile'
+    else
+      'mod'
+    end
+  end
 end

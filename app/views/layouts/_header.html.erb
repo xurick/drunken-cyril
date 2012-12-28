@@ -25,6 +25,12 @@
 
           <% if signed_in? %>
 
+            <% if current_user.guest? %>
+              <li><h4 class="text-success">Hello Guest!</h4></li> 
+            <% else %>
+              <li><h4 class="text-success">Hello <%= current_user.name %>!</h4></li> 
+            <% end %>
+
             <li><%= link_to 'Dashboard', current_user %></li>
             <%#<li>%>
             <%# link_to 'Settings', edit_user_path(current_user) %>
@@ -32,6 +38,7 @@
             <li>
             <% if current_user.guest? %>
               <%= link_to 'Save & continue', signup_path, class: 'btn-header' %>
+              <%= link_to 'Start over', signout_path, method: 'delete', class: 'btn-header' %>
             <% else %>
               <%= link_to 'Sign out', signout_path, method: 'delete', class: 'btn-header' %>
             <% end %>
