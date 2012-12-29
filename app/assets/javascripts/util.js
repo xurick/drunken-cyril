@@ -313,7 +313,7 @@ var mdot = (function(parent, $) {
 
   my.findBgColor = function(node) {
     var found = false;
-    var color = '';
+    var color = 'rgba(0, 0, 0, 0)';
 
     $(node).parentsUntil('html').each(function() {
       var bgColor = $(this).css('background-color');

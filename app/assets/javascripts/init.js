@@ -65,13 +65,25 @@ var mdot = (function(my, $) {
         var pat = /<head(.*?)>/gi, match = pat.exec(markup);
 
         // adding the <base> immediately after <head>
-        markup = markup.replace(pat, '<head ' +
-            match[1] +
-            '><base href=\'' +
-            anchor.protocol +
-            '//' +
-            anchor.hostname +
-            anchor.pathname + '\'  />');
+        if(match != null) {
+          markup = markup.replace(pat, '<head ' +
+              match[1] +
+              '><base href=\'' +
+              anchor.protocol +
+              '//' +
+              anchor.hostname +
+              anchor.pathname + '\'  />');
+        }
+        else {//somehow <head> is not found, creates <head>
+          pat = /<html(.*?)>/gi, match = pat.exec(markup);
+          markup = markup.replace(pat, '<html ' +
+              match[1] +
+              '><head><base href=\'' +
+              anchor.protocol +
+              '//' +
+              anchor.hostname +
+              anchor.pathname + '\'  /></head>');
+        }
 
         var desktopFrame = document.createElement('iframe');
         $(desktopFrame).addClass('preview hidden');
