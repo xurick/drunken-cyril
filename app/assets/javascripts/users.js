@@ -2,7 +2,9 @@ $(function() {
   // if the URL has query string in it, then we know this is first time
   // user's seeing the dashboard, bring up a welcome modal
   if(window.location.search != "") {
-    $('#subdomain').html(window.location.search.substring(11));
+    var $subdomainStr = $('#subdomain');
+    $subdomainStr.html(window.location.search.substring(11));
+    $subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+window.location.host);
     $('#welcomeModal').modal();
   }
 

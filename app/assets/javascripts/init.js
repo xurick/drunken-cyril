@@ -105,7 +105,9 @@ var mdot = (function(my, $) {
             else {//we are already at dashboard, so insert row and switch preview
               // data should be the id of the newly created site record
               
-              $('#subdomain').html(data.site_name);
+              var $subdomainStr = $('#subdomain');
+              $subdomainStr.html(data.site_name);
+              $subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+window.location.host);
               $('#welcomeModal').modal();
 
               $('.table tr:last').after(newRowMarkup(data));
