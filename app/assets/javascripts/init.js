@@ -107,7 +107,7 @@ var mdot = (function(my, $) {
               
               var $subdomainStr = $('#subdomain');
               var host = window.location.host;
-              host = (host.substr(0.4)==='www.') ? host.substr(4) : host;
+              host = (host.substr(0,4)==='www.') ? host.substr(4) : host;
               $subdomainStr.html(data.site_name);
               $subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+host);
               $('#welcomeModal').modal();

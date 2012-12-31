@@ -4,7 +4,7 @@ $(function() {
   if(window.location.search != "") {
     var $subdomainStr = $('#subdomain');
     var host = window.location.host;
-    host = (host.substr(0.4)==='www.') ? host.substr(4) : host;
+    host = (host.substr(0,4)==='www.') ? host.substr(4) : host;
     $subdomainStr.html(window.location.search.substring(11));
     $subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+host);
     $('#welcomeModal').modal();
