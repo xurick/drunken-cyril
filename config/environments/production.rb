@@ -52,10 +52,7 @@ MdotApp::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( sites_manifest.css )
-  config.assets.precompile += %w( mod.css )
-  config.assets.precompile += %w( sites_manifest.js )
-  config.assets.precompile += %w( mod.js )
+  config.assets.precompile += ['sites_manifest.css', 'sites_manifest.js', 'mod_manifest.css', 'mod_manifest.js' ]
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
