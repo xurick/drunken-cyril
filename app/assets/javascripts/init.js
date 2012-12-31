@@ -19,6 +19,17 @@ var mdot = (function(my, $) {
 
       var anchor = document.createElement('a');
       var url = $('#url_input').val();
+      if(url == '') {
+        alert('invalid url');
+        return;
+      }
+      url = $.trim(url);
+      url = mdot.util.smartAddUrlProtocol(url);
+      if(!mdot.util.validateUrl(url)) {
+        alert('invalid url');
+        return;
+      }
+
       anchor.href = url;
       $(this).text('Converting ...').toggleClass('loading disabled');
       var ifr = $('iframe.preview');
