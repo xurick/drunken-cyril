@@ -591,5 +591,17 @@ var mdot = (function(parent, $) {
     else return false;
   }
 
+  my.findPhone = function(doc) {
+    var pat = /\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})/;
+    var txt = $(doc).text();
+    txt = $.trim(txt);
+    var result = txt.match(pat);
+    if(result) {
+      return $.trim(result[0]).replace(/ /g, '');
+    } else {
+      return '#';
+    }
+  }
+
   return parent;
 }(mdot || {}, jQuery));

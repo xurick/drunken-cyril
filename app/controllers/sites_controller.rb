@@ -9,7 +9,8 @@ class SitesController < ApplicationController
       :logo_img => params[:logo],
       :nav_menu => params[:menu],
       :content => params[:content],
-      :subdomain => extract_name(params[:url])
+      :subdomain => extract_name(params[:url]),
+      :phone => params[:phone]
     )
 
     if @site.save

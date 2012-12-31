@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221175558) do
+ActiveRecord::Schema.define(:version => 20121231222712) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street1"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20121221175558) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "subdomain"
+    t.string   "phone"
   end
 
   add_index "sites", ["user_id"], :name => "index_sites_on_user_id"

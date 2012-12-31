@@ -106,6 +106,7 @@ var mdot = (function(my, $) {
 
           var mobilePage = mdot.mobilize(desktopDoc.body, anchor.href);
           mobilePage.url = anchor.href;
+          mobilePage.phone = mdot.util.findPhone(desktopDoc);
 
           // create new site record
           $.post('/sites', mobilePage, function(data) {
