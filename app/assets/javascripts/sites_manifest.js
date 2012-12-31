@@ -1,3 +1,3 @@
 //= require jquery
 //= require jquery.mobile
-//= require mobile/mobile
+//= require mobile

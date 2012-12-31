@@ -1,2 +1,2 @@
 //= require jquery
-//= require mobile/mod
+//= require mod

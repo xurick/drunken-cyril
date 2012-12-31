@@ -3,8 +3,9 @@ $(function() {
   // user's seeing the dashboard, bring up a welcome modal
   if(window.location.search != "") {
     var $subdomainStr = $('#subdomain');
+    var host = window.location.host;
     $subdomainStr.html(window.location.search.substring(11));
-    $subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+window.location.host);
+    $subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+host);
     $('#welcomeModal').modal();
   }
 

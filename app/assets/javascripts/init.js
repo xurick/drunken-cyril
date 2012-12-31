@@ -106,8 +106,10 @@ var mdot = (function(my, $) {
               // data should be the id of the newly created site record
               
               var $subdomainStr = $('#subdomain');
+              var host = window.location.host;
+              host = (host.substr(0.4)==='www.') ? host.substr(4) : host;
               $subdomainStr.html(data.site_name);
-              $subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+window.location.host);
+              $subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+host);
               $('#welcomeModal').modal();
 
               $('.table tr:last').after(newRowMarkup(data));
