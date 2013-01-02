@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   #validates :password, presence: true, length: { minimum: 6 }, :if => :password, unless: :guest?
   #validates :password_confirmation, presence: true, :if => :password_confirmation, unless: :guest?
   # https://github.com/travisjeffery/validates_phone_number
-  validates_as_phone_number :phone_number, :message => 'Invalid phone number format', :allow_nil => true
+  #validates_as_phone_number :phone_number, :message => 'Invalid phone number format', :allow_nil => true
 
   validates_presence_of :password_digest, unless: :guest?
   validates_confirmation_of :password
