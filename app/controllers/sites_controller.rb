@@ -13,21 +13,21 @@ class SitesController < ApplicationController
       :subdomain => extract_name(params[:url]),
       :phone => params[:phone] 
     )
+    #@site need to save first to have a site_id so that @address
+    #can save as well
     if @site.save
       if params[:address]
-        @address = @site.addresses.build(
+        #don't care about @address save failure for now
+        # TODO
+        @address = @site.addresses.create(
           :street1 => params[:address][:street1],
           :street2 => params[:address][:street2],
           :city => params[:address][:city],
           :state => params[:address][:state],
           :zipcode => params[:address][:zip]
         )
-        if @address.save
-          render :json => { :site_id => @site.id, :site_name => @site.subdomain }
-        else
-          head :bad_request
-        end
       end
+      render :json => { :site_id => @site.id, :site_name => @site.subdomain }
     else
       head :bad_request
     end
