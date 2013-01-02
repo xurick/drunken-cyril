@@ -1,17 +1,17 @@
 class User < ActiveRecord::Base
   # these attributes are updatable via update_attributes method
-  attr_accessible :name, :email, :password, :password_confirmation, :phone_number, :addresses_attributes
+  attr_accessible :name, :email, :password, :password_confirmation
 
   #has_secure_password
 
   # a user can have many addresses, which will be destroyed when the user is destroyed
-  has_many :addresses, dependent: :destroy
+  # has_many :addresses, dependent: :destroy
   has_many :business_hours, dependent: :destroy
 
   has_many :sites, dependent: :destroy
 
   # allows for creating/updating of associated model inside the same form
-  accepts_nested_attributes_for :addresses, :allow_destroy => true
+  #accepts_nested_attributes_for :addresses, :allow_destroy => true
 
   # tough one: allows for the user to add multiple objects within one form when each object 
   # already has an attribute defined (the day_of_week attr) 

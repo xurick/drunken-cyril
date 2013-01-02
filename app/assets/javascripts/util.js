@@ -148,13 +148,16 @@ var mdot = (function(parent, $) {
         .replace(/<\/td>/gi, "</div>")
         .replace(/<\/tbody/gi, "<\/div")
         .replace(/<\/table/gi, "<\/div"));
+
+    // removes width attribute
+    p.find('*').removeAttr('width');
   }
 
   my.findLogo = function(dtBody) {
 
     var logos = [];
     var logoNamePat = /header|index|logo|title|titre/i;
-    var imgIgnorePat = /goog|facebook/i;
+    var imgIgnorePat = /goog|facebook|twitter/i;
     var hpNamePat = /\/|index|header|home/i;
 
     // <img> logo
@@ -168,13 +171,14 @@ var mdot = (function(parent, $) {
       var bgImgUrl = $(this).css('background-image');
       var score = 0;
 
+      //disregarding goog/fb images
+      if(imgIgnorePat.test(fileName) || imgIgnorePat.test(altText)) {
+        return false;
+      }
 
       if(fileName !='' && logoNamePat.test(fileName)) {
-        //disregarding goog/fb images
         //<img> has src whose name contains 'logo', 'index', 'title'
-        if(!imgIgnorePat.test(fileName) && !imgIgnorePat.test(altText)) { 
-          score++;
-        }
+        score++;
       }
       //<img> whose id/class is 'logo'
       if(logoNamePat.test(this.className) || logoNamePat.test(this.id)) {
@@ -273,7 +277,6 @@ var mdot = (function(parent, $) {
     // the triage algorithm:
     // 1. if one has 'logo' in its name and the others don't, then bingo
     // 2. if more than 1 image has 'logo' then whoever appears first in the array
-    // //2. if more than 1 image has 'logo' then whoever appears first in DOM order wins
     // 3. if none of the images have 'logo' in name, then return the first one in orig array
 
     var logoInName = [];
@@ -291,24 +294,22 @@ var mdot = (function(parent, $) {
           logoInName.push(logos[i]);
       }
 
-      if(logoInName.length==0)
+      if(logoInName.length==0) {
         return logos[0];
-      else
+      }
+      else if(logoInName.length==1) {
         return logoInName[0];
+      } else {
+        // sort by document order
+        var sortedLogos = logoInName.sort(function(a,b) {
+          return 3 - (a.compareDocumentPosition(b) & 6);
+        });
+        return sortedLogos[0];
+      }
     }
-    else 
+    else {//empty logo array: no logos found
       return null;
-
-    //if(logoInName.length == 1) return logoInName[0];
-
-    // sort by document order
-    //var sortedLogos = logoInName.sort(function(a,b) {
-    //return 3 - (a.compareDocumentPosition(b) & 6);
-    //});
-    //return sortedLogos[0];
-
-    //return null;
-
+    }
   }
 
   my.findBgColor = function(node) {
@@ -592,15 +593,43 @@ var mdot = (function(parent, $) {
   }
 
   my.findPhone = function(doc) {
-    var pat = /\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})/;
+    var pat = /\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})/;
     var txt = $(doc).text();
-    txt = $.trim(txt);
     var result = txt.match(pat);
     if(result) {
       return $.trim(result[0]).replace(/ /g, '');
     } else {
       return '#';
     }
+  }
+
+  //http://regexlib.com/REDetails.aspx?regexp_id=986
+  my.findAddress = function(doc) {
+
+    var pat1 = /(A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])\s+(\d{5})(-\d{4})?/i;
+
+    var pat = /\s*((?:(?:\d+(?:\x20+\w+\.?)+(?:(?:\x20+STREET|ST|DRIVE|DR|AVENUE|AVE|ROAD|RD|LOOP|COURT|CT|CIRCLE|LANE|LN|BOULEVARD|BLVD)\.?)?)|(?:(?:P\.\x20?O\.|P\x20?O)\x20*Box\x20+\d+)|(?:General\x20+Delivery)|(?:C[\\\/]O\x20+(?:\w+\x20*)+))\,?\x20*(?:(?:(?:APT|BLDG|DEPT|FL|HNGR|LOT|PIER|RM|S(?:LIP|PC|T(?:E|OP))|TRLR|UNIT|\x23)\.?\x20*(?:[a-zA-Z0-9\-]+))|(?:BSMT|FRNT|LBBY|LOWR|OFC|PH|REAR|SIDE|UPPR))?)\,?\s+((?:(?:\d+(?:\x20+\w+\.?)+(?:(?:\x20+STREET|ST|DRIVE|DR|AVENUE|AVE|ROAD|RD|LOOP|COURT|CT|CIRCLE|LANE|LN|BOULEVARD|BLVD)\.?)?)|(?:(?:P\.\x20?O\.|P\x20?O)\x20*Box\x20+\d+)|(?:General\x20+Delivery)|(?:C[\\\/]O\x20+(?:\w+\x20*)+))\,?\x20*(?:(?:(?:APT|BLDG|DEPT|FL|HNGR|LOT|PIER|RM|S(?:LIP|PC|T(?:E|OP))|TRLR|UNIT|\x23)\.?\x20*(?:[a-zA-Z0-9\-]+))|(?:BSMT|FRNT|LBBY|LOWR|OFC|PH|REAR|SIDE|UPPR))?)?\,?\s+((?:[A-Za-z]+\x20*)+)\,\s+(A[LKSZRAP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])\s+(\d+(?:-\d+)?)\s*/i;
+
+    var addr_parts = {};
+
+    var txt = $(doc.body).text();
+    var result = txt.match(pat1);
+    if(result) { // found pattern for state name followed by zip
+      txt = txt.slice(result.index-50, result.index+50);
+      result = txt.match(pat);
+      if(result) {
+        addr_parts.street1 = my.cleanStr(result[1]);
+        addr_parts.street2 = my.cleanStr(result[2]);
+        addr_parts.city = my.cleanStr(result[3]);
+        addr_parts.state = my.cleanStr(result[4]);
+        addr_parts.zip = my.cleanStr(result[5]);
+      }
+    }
+    return addr_parts;
+  }
+
+  my.cleanStr = function(str) {
+    return $.trim(str).replace(/\s+/g, ' ');
   }
 
   return parent;

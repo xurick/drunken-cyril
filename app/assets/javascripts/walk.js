@@ -138,13 +138,11 @@ var mdot = (function(my, $) {
           var widthVal = $(node).width();
           // 87.5% of 320
           if(widthVal>300 || nodeName=='input') {
-            $(cloned).removeAttr('width','');
-            $(cloned).removeAttr('height','');
+            $(cloned).removeAttr('width');
+            $(cloned).removeAttr('height');
             $(cloned).css('width','300px');
             $(cloned).css('height','auto');
-          } else {
-            $(cloned).css('width', widthVal);
-          }
+          } 
         }
       }
 

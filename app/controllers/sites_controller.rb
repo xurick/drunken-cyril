@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  helper_method :make_map_url
   layout :mobile_or_not
 
   before_filter :signed_in_user, :except => [:show, :test]
@@ -10,12 +11,23 @@ class SitesController < ApplicationController
       :nav_menu => params[:menu],
       :content => params[:content],
       :subdomain => extract_name(params[:url]),
-      :phone => params[:phone]
+      :phone => params[:phone] 
     )
-
     if @site.save
-      #render :text => @site.id.to_s
-      render :json => { :site_id => @site.id, :site_name => @site.subdomain }
+      if params[:address]
+        @address = @site.addresses.build(
+          :street1 => params[:address][:street1],
+          :street2 => params[:address][:street2],
+          :city => params[:address][:city],
+          :state => params[:address][:state],
+          :zipcode => params[:address][:zip]
+        )
+        if @address.save
+          render :json => { :site_id => @site.id, :site_name => @site.subdomain }
+        else
+          head :bad_request
+        end
+      end
     else
       head :bad_request
     end
@@ -65,6 +77,15 @@ class SitesController < ApplicationController
       'mobile'
     else
       'mod'
+    end
+  end
+
+  def make_map_url(record)
+    if record
+      addr_str = "#{record.street1} #{record.street2} #{record.city} #{record.state} #{record.zipcode}"
+      return 'http://maps.google.com/maps?q='+URI.escape(addr_str)+'&output=embed'
+    else
+      return '#'
     end
   end
 end

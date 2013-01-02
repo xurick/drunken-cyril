@@ -107,30 +107,33 @@ var mdot = (function(my, $) {
           var mobilePage = mdot.mobilize(desktopDoc.body, anchor.href);
           mobilePage.url = anchor.href;
           mobilePage.phone = mdot.util.findPhone(desktopDoc);
+          mobilePage.address = mdot.util.findAddress(desktopDoc);
 
           // create new site record
           $.post('/sites', mobilePage, function(data) {
             desktopFrame.parentNode.removeChild(desktopFrame);
-            if(window.location.pathname.indexOf('users') == -1) {//we are at home page
-              window.location = 'users/' + window.currentUserId + '?site_name=' + data.site_name;
-            }
-            else {//we are already at dashboard, so insert row and switch preview
-              // data should be the id of the newly created site record
-              
-              var $subdomainStr = $('#subdomain');
-              var host = window.location.host;
-              host = (host.substr(0,4)==='www.') ? host.substr(4) : host;
-              $subdomainStr.html(data.site_name);
-              $subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+host);
-              $('#welcomeModal').modal();
+            window.location = '/users/' + window.currentUserId + '?site_name=' + data.site_name;
 
-              $('.table tr:last').after(newRowMarkup(data));
-              var selector = "tr[id='row_" + data.site_id + "']";
-              $(selector).click();
-              $('a#action').text('Take action now!').toggleClass('loading disabled');
-              $('iframe.preview').css('opacity', 1);
-              $('#mobile_screen').spin(false);
-            }
+            //if(window.location.pathname.indexOf('users') == -1) {//we are at home page
+              //window.location = 'users/' + window.currentUserId + '?site_name=' + data.site_name;
+            //}
+            //else {//we are already at dashboard, so insert row and switch preview
+              //// data should be the id of the newly created site record
+              
+              //var $subdomainStr = $('#subdomain');
+              //var host = window.location.host;
+              //host = (host.substr(0,4)==='www.') ? host.substr(4) : host;
+              //$subdomainStr.html(data.site_name);
+              //$subdomainStr.parents('a').attr('href', 'http://'+$subdomainStr.html()+'.'+host);
+              //$('#welcomeModal').modal();
+
+              //$('.table tr:last').after(newRowMarkup(data));
+              //var selector = "tr[id='row_" + data.site_id + "']";
+              //$(selector).click();
+              //$('a#action').text('Take action now!').toggleClass('loading disabled');
+              //$('iframe.preview').css('opacity', 1);
+              //$('#mobile_screen').spin(false);
+            //}
           });
         });
         desktopDoc.write(markup);
@@ -139,19 +142,19 @@ var mdot = (function(my, $) {
     }
   }
 
-  function newRowMarkup(data) {
-    var id = data.site_id;
-    var name = data.site_name;
-    var row_id = 'row_' + id;
+  //function newRowMarkup(data) {
+    //var id = data.site_id;
+    //var name = data.site_name;
+    //var row_id = 'row_' + id;
 
-    return '<tr id=' + row_id + '>' +
-      "<td class='text-success'><strong>" + name + '</strong></td>' +
-      "<td><a class='btn btn-success' href='/editor/" + id + "'><i class='icon-edit icon-white'></i> Edit</td>" +
-      "<td><a class='btn btn-success' href='#'><i class='icon-globe icon-white'></i> Live</a></td>" +
-      "<td><a class='btn btn-success' href='#'><i class='icon-facetime-video icon-white'></i> Traffic</a></td>" +
-      "<td><a class='btn btn-danger' href='#'><i class='icon-trash icon-white'></i> Delete</a></td>" +
-      "</tr>";
-  }
+    //return '<tr id=' + row_id + '>' +
+      //"<td class='text-success'><strong>" + name + '</strong></td>' +
+      //"<td><a class='btn btn-success' href='/editor/" + id + "'><i class='icon-edit icon-white'></i> Edit</td>" +
+      //"<td><a class='btn btn-success' href='#'><i class='icon-globe icon-white'></i> Live</a></td>" +
+      //"<td><a class='btn btn-success' href='#'><i class='icon-facetime-video icon-white'></i> Traffic</a></td>" +
+      //"<td><a class='btn btn-danger' href='#'><i class='icon-trash icon-white'></i> Delete</a></td>" +
+      //"</tr>";
+  //}
 
   return my;
 

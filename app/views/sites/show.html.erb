@@ -6,7 +6,7 @@
 
 <% content_for :action_buttons do %>
   <a href='tel:<%= @site.phone %>' data-role='button' data-inline='false' data-icon='phone'>Call Us!</a>
-  <a href='#' data-role='button' data-inline='false' data-icon='mappin'>Find Us!</a>
+  <a href=<%= @site.addresses ? make_map_url(@site.addresses.first) : '#' %> data-role='button' data-inline='false' data-icon='mappin'>Find Us!</a>
 <% end %>
 
 <% content_for :nav_menu do %>

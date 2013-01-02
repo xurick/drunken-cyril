@@ -8,9 +8,8 @@ class UsersController < ApplicationController
 
     # creating the addresses instance without saving to DB, if the user does not yet have
     # an addresses record
-    @user.addresses.build if @user.addresses.blank?
+    #@user.addresses.build if @user.addresses.blank?
 
-    # TODO: hardcoded value
     @site = @user.sites.find_by_user_id(@user.id)
 
     # ditto for weekday hours
