@@ -22,4 +22,6 @@ function changeTheme(theme) {
   headfoot.addClass('ui-bar-' + theme).attr('data-theme', theme);
 
   foo.addClass('ui-body-' + theme).attr('data-theme', theme);
+
+  foo.find('#md_theme').html(theme);
 }

@@ -8,12 +8,13 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div id='home' data-role='page' data-theme='d'>
+    <div id='home' data-role='page' data-theme='<%= @site.theme %>'>
       <div data-role='content'>
         <%= yield :logo_img %>
         <%= yield :action_buttons %>
         <%= yield :nav_menu %>
         <%= yield %>
+        <div id='md_theme' data-mercury='full' style='display:none'><%= @site.theme %></div>
       </div>
     </div>
   </body>

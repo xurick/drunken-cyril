@@ -4,8 +4,8 @@ var mdot = (function(my, $) {
   // need to trim them to reduce clutter
   // also, need to trim them if they are default value, e.g. no need to add background
   // prop if background-image=='none'
-  var SMALL_IMG_WIDTH = 50;
-  var SMALL_IMG_HEIGHT = 50;
+  var SMALL_IMG_WIDTH = 70;
+  var SMALL_IMG_HEIGHT = 70;
   var cssToKeep = ['width','font','color','list-style','display','background'];
   var attribsToIgnore = {
     'align':/left|right/, //removing left/right aligning attributes
@@ -28,8 +28,8 @@ var mdot = (function(my, $) {
     if(mdot.util.isIgnorable(node)) return null;
 
     // does this DIV house a slider?
-    if(sliderNamePat.test(node.className) || sliderNamePat.test(node.id))
-      return mdot.util.extractSliderImg(node);
+    //if(sliderNamePat.test(node.className) || sliderNamePat.test(node.id))
+      //return mdot.util.extractSliderImg(node);
 
     // disregard fixed positioning elements
     if($(node).css('position')=='fixed') {
@@ -37,10 +37,10 @@ var mdot = (function(my, $) {
     }
 
     // only allow FB iframe
-    //if(nodeName=='iframe') {
-    //if($(node).attr('src').indexOf('facebook.com')==-1)
-    //return null;
-    //}
+    if(nodeName=='iframe') {
+      if($(node).attr('src').indexOf('facebook.com')==-1)
+        return null;
+    }
 
     if(nodeName == 'body')
       cloned = $('<div />', { class:'body' }).get(0);

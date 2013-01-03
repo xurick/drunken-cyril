@@ -11,7 +11,8 @@ class SitesController < ApplicationController
       :nav_menu => params[:menu],
       :content => params[:content],
       :subdomain => extract_name(params[:url]),
-      :phone => params[:phone] 
+      :phone => params[:phone],
+      :theme => 'd' # default theme TODO
     )
     #@site need to save first to have a site_id so that @address
     #can save as well
@@ -46,6 +47,7 @@ class SitesController < ApplicationController
     if params.has_key?(:content)
       site.logo_img = params[:content][:logo_img][:value]
       site.content = params[:content][:site_content][:value]
+      site.theme = params[:content][:md_theme][:value]
     elsif params.has_key?(:site)
       site.subdomain = params[:site][:subdomain]
     end

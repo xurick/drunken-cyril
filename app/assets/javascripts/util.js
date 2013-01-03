@@ -99,7 +99,7 @@ var mdot = (function(parent, $) {
 
   my.isIgnorable = function(elem) {
 
-    var elemsToIgnore = ['iframe','style','noscript','script','embed','object','param'];
+    var elemsToIgnore = ['style','noscript','script','embed','object','param'];
     var name = elem.nodeName.toLowerCase();
     var canIgnore = false;
 
