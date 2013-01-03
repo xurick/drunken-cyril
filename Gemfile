@@ -37,4 +37,3 @@ gem 'mercury-rails', :git => 'git://github.com/budwhite/mercury.git'
 gem "spinjs-rails", "~> 0.0.4"
 gem 'paperclip', "~> 3.4.0"
 gem "active_attr", "~> 0.7.0"
-gem 'newrelic_rpm'
