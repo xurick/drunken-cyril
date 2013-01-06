@@ -2,7 +2,7 @@ class SitesController < ApplicationController
   helper_method :make_map_url
   layout :mobile_or_not
 
-  before_filter :signed_in_user, :except => [:show, :test]
+  before_filter :signed_in_user, :except => [:show, :cafeori]
 
   def create
     @site = current_user.sites.build(
@@ -62,7 +62,7 @@ class SitesController < ApplicationController
     redirect_to current_user
   end
 
-  def test
+  def cafeori
     render :layout => false
   end
 

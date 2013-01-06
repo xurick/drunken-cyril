@@ -10,6 +10,9 @@ MdotApp::Application.routes.draw do
     match '/' => 'sites#show'
   end
 
+  #special route to cafeori
+  match '/' => 'sites#cafeori', :constraints => {:subdomain => 'cafeori'}
+
   root :to => 'main#home'
 
   get 'main/home'
@@ -23,9 +26,6 @@ MdotApp::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
 
   # testing
-  match '/test', to: 'main#test'
-
-  # temporary for Cafe Ori test
-  get "sites/test"
+  #match '/test', to: 'main#test'
 
 end

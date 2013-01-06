@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 
   def get_test_sites
     test_sites = %w{
+      http://www.lakewashingtonpt.com
       http://www.cafeoribellevue.com
       http://www.tresamigos.com
       http://www.havanamania.com

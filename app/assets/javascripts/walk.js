@@ -140,7 +140,7 @@ var mdot = (function(my, $) {
           if(widthVal>300 || nodeName=='input') {
             $(cloned).removeAttr('width');
             $(cloned).removeAttr('height');
-            $(cloned).css('width','300px');
+            $(cloned).css('width','auto');
             $(cloned).css('height','auto');
           } 
         }

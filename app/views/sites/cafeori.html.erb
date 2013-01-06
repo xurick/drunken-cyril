@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <%= stylesheet_link_tag 'sites_manifest' %>
+    <%= javascript_include_tag 'sites_manifest' %>
+    <style>
+      .ui-mobile .ui-page {
+        background: transparent;
+      }
+
+      body.ui-mobile-viewport {
+        margin:0;
+        padding:0;
+        background: #187800;
+        background-image: url('http://www.cafeoribellevue.com/images/bamboo-cutR.gif'), url('http://www.cafeoribellevue.com/images/bamboo-cutL.gif');
+        background-repeat: no-repeat, no-repeat;
+        background-position: right center, left center;
+      }
+
+      /* css reset for jquery mobile ui */
+      .ui-body-c, .ui-overlay-c{
+        text-shadow: 0pt 0px 0pt rgb(0, 0, 0); 
+        background:none;
+      }
+    </style>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id='home' data-role='page' data-theme='e'>
+
+      <div data-role='content' id="primary" data-mercury="full">
+        <h1 style="font-style: normal; font-variant: normal; font-weight: bold; font-size: 56px; line-height: normal; font-family: 'Times New Roman', Times, serif; width: 300px; height: auto; color:white; text-align:center; margin-top:0px; margin-bottom:0px">
+          Cafe Ori
+          <div class="logoWrapper" style="background-color: rgb(24, 120, 0); "><img id="logo" src="http://www.cafeoribellevue.com/images/LOGO-CafeOri-H64transp.png" alt="Cafe Ori (Chinese)" class="ignore"></div>
+        </h1>
+
+        <a href='tel:1-425-747-8822' data-role='button' data-inline='false' data-icon='phone'>Call Us</a>
+        <a href='http://maps.apple.com/maps?q=14339+NE+20th+st,Bellevue,WA,98007' data-role='button' data-inline='false' data-icon='mappin'>Find Us</a>
+        <a href='#' data-role='button' data-inline='false' data-icon='info'>Open Daily 11am-10pm</a>
+        <a href='#' data-role='button' data-inline='false' data-icon='facebook'>Like Us</a>
+
+        <ul data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li data-role="list-divider">Menu 菜單</li>
+          <li><a href="#appetizers">Appetizers</a></li>
+          <li><a href="#soup">Soup</a></li>
+          <li><a href="#curry">Curry</a></li>
+          <li><a href="#seafood">Seafood</a></li>
+          <li><a href="#beefpork">Beef / Pork</a></li>
+          <li><a href="#chicken">Chicken</a></li>
+          <li><a href="#hotpot">Hot Pot</a></li>
+          <li><a href="#beancurd">Bean Curd</a></li>
+          <li><a href="#vegetable">Vegetable</a></li>
+          <li><a href="#ricespaghetti">Rice / Spaghetti</a></li>
+          <li><a href="#friednoodle">Fried Noodle</a></li>
+          <li><a href="#soupnoodle">Soup Noodle</a></li>
+          <li><a href="#congee">Congee</a></li>
+          <li><a href="#taiwaneseshavedice">Taiwanese Shaved Ice</a></li>
+          <li><a href="#hotcolddrinks">Hot or Cold Drinks</a></li>
+          <li><a href="#colddrinks">Cold Drinks</a></li>
+        </ul>
+
+        <a href='http://cafeoribellevue.com' data-role='button' data-icon='home'>Classic Desktop Homepage</a>
+         
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='appetizers'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Appetizers</h1>
+      </div>
+      <div data-role='content'>
+        <ol data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>French toast<span class='ui-li-aside'>$2.00</span></li>
+          <li>Egg Roll (2)<span class='ui-li-aside'>$2.00</span></li>
+          <li>Deep-Fried Dough Sticks<span class='ui-li-aside'>$2.00</span></li>
+          <li>Fried Dumplings<span class='ui-li-aside'>$6.00</span></li>
+          <li>Wonton w/ Spicy Sauce<span class='ui-li-aside'>$6.60</span></li>
+          <li>Chicken Wing w/ Salt & Pepper<span class='ui-li-aside'>$7.00</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='soup'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Soup</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='7' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Soup of the Day<span class='ui-li-aside'>$3.30</span></li>
+          <li>Hot & Sour Soup<span class='ui-li-aside'>S-$2.75<br />L-$4.95</span></li>
+          <li>Wonton Soup<span class='ui-li-aside'>S-$2.75<br />L-$4.95</span></li>
+          <li>Cream of Mushroom Soup<span class='ui-li-aside'>S-$2.75<br />L-$4.95</span></li>
+          <li>Cream of Corn Soup<span class='ui-li-aside'>S-$2.75<br />L-$4.95</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='curry'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Curry</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='12' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Curry Prawn<span class='ui-li-aside'>$12.00</span></li>
+          <li>Curry Fish<span class='ui-li-aside'>$10.50</span></li>
+          <li>Curry Squid<span class='ui-li-aside'>$10.50</span></li>
+          <li>Curry Beef<span class='ui-li-aside'>$10.00</span></li>
+          <li>Curry Beef Brisket<span class='ui-li-aside'>$10.00</span></li>
+          <li>Curry Chicken<span class='ui-li-aside'>$10.00</span></li>
+          <li>Curry Vegetable<span class='ui-li-aside'>$9.00</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='seafood'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Seafood</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='19' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Stir Fried Seafood Vegetable<span class='ui-li-aside'>$12.00</span></li>
+          <li>Pan-fried Prawn w/ Salt & Pepper<span class='ui-li-aside'>$11.50</span></li>
+          <li>Pan-fried Prawn w/ Tomato Sauce<span class='ui-li-aside'>$11.50</span></li>
+          <li>Pan-fried Prawn w/ Honey & Walnuts<span class='ui-li-aside'>$11.50</span></li>
+          <li>Stir Fried Prawn<span class='ui-li-aside'>$11.50</span></li>
+          <li>Stir Fried Prawn w/ Peanuts<span class='ui-li-aside'>$11.50</span></li>
+          <li>Stir Fried Prawn w/ Cashew Nuts<span class='ui-li-aside'>$11.50</span></li>
+          <li>Baked Fish Hong Kong Style<span class='ui-li-aside'>$10.50</span></li>
+          <li>Sauteed Fish w/ Cream of Corn<span class='ui-li-aside'>$10.50</span></li>
+          <li>Pan-fried Squid w/ Salt & Pepper<span class='ui-li-aside'>$10.50</span></li>
+          <li>Stir Fried Squid w/ Ginger & Green Onion<span class='ui-li-aside'>$10.50</span></li>
+          <li>Sauteed Rock Cod Fillet<span class='ui-li-aside'>$10.50</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='beefpork'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Beef/Pork</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='31' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Sweet & Sour Pork Chop <span class='ui-li-aside'>$9.50</span></li>
+          <li>Bitter Melon Beef <span class='ui-li-aside'>$9.50</span></li>
+          <li>Mongolian Beef <span class='ui-li-aside'>$9.50</span></li>
+          <li>Sauteed Beef w/ Onions <span class='ui-li-aside'>$9.50</span></li>
+          <li>Sauteed Beef w/ Vegetables <span class='ui-li-aside'>$9.50</span></li>
+          <li>Sauteed Beef w/ Black Bean Sauce <span class='ui-li-aside'>$9.50</span></li>
+          <li>Chinese Broccoli Beef <span class='ui-li-aside'>$9.50</span></li>
+          <li>Bean Curd Beef <span class='ui-li-aside'>$9.50</span></li>
+          <li>Lemongrass Pork Chop <span class='ui-li-aside'>$9.50</span></li>
+          <li>Pan-fried Pork Chop w/ Salt & Pepper <span class='ui-li-aside'>$9.50</span></li>
+          <li>Sauteed Pork w/ Vegetables <span class='ui-li-aside'>$9.50</span></li>
+          <li>Sauteed Sparerib w/ Black Bean Sauce <span class='ui-li-aside'>$9.50</span></li>
+          <li>Sweet & Sour Pork <span class='ui-li-aside'>$9.50</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='chicken'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Chicken</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='44' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Hai Nan Chicken <span class='ui-li-aside'>Half -  $9.00 <br />Whole -  $17.00</span></li>
+          <li>Crispy Fried Chicken <span class='ui-li-aside'>Half -  $9.00 <br />Whole -  $17.00</span></li>
+          <li>Sauteed Chicken w/ Peanuts <span class='ui-li-aside'>$9.00</span></li>
+          <li>Sauteed chicken w/ Cashew Nuts <span class='ui-li-aside'>$9.00</span></li>
+          <li>Sauteed Chicken w/ Spicy Sauce <span class='ui-li-aside'>$9.00</span></li>
+          <li>Lemongrass Chicken <span class='ui-li-aside'>$9.00</span></li>
+          <li>Portuguese Chicken <span class='ui-li-aside'>$9.00</span></li>
+          <li>Sweet & Sour Chicken <span class='ui-li-aside'>$9.00</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='hotpot'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Hot Pot</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='52' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Assorted Bean Curd Hot Pot (w/ Soup) <span class='ui-li-aside'>$12.00</span></li>
+          <li>Seafood Bean Curd Hot Pot (w/ Soup) <span class='ui-li-aside'>$13.00</span></li>
+          <li>Chicken Mushroom Hot Pot <span class='ui-li-aside'>$10.00</span></li>
+          <li>Ginger Beef Hot Pot <span class='ui-li-aside'>$10.00</span></li>
+          <li>Vermicelli Prawn Hot Pot <span class='ui-li-aside'>$11.50</span></li>
+          <li>Sparerib Hot Pot w/ Eggplant & Bean Curd <span class='ui-li-aside'>$10.00</span></li>
+          <li>Eight Jewels w/ Bean Curd Hot Pot <span class='ui-li-aside'>$10.50</span></li>
+          <li>Chaozhou Pork Bellies <span class='ui-li-aside'>$9.50</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='beancurd'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Bean Curd</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='60' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Braised Bean Curd <span class='ui-li-aside'>$8.00</span></li>
+          <li>Bean Curd w/ Minced Pork in Chilli Sauce <span class='ui-li-aside'>$8.00</span></li>
+          <li>Family Style Bean Curd <span class='ui-li-aside'>$8.00</span></li>
+          <li>Fried Bean Curd w/ Salt & Pepper <span class='ui-li-aside'>$8.00</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='vegetable'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Vegetable</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='64' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Sauteed String Bean w/ Spice <span class='ui-li-aside'>$8.00</span></li>
+          <li>Sauteed String Bea w/ Garlic <span class='ui-li-aside'>$8.00</span></li>
+          <li>Sauteed Vegetable w/ Garlic <span class='ui-li-aside'>$8.00</span></li>
+          <li>Chinese Broccoli w/ Oyster Sauce <span class='ui-li-aside'>$8.00</span></li>
+          <li>Sauteed Broccoli w/ Mushroom <span class='ui-li-aside'>$8.00</span></li>
+          <li>Stir Fried Seasonal Vegetable <span class='ui-li-aside'>$8.00</span></li>
+          <li>Buddhist Delight <span class='ui-li-aside'>$8.00</span></li>
+          <li>Stir Fried Mix Vegetable <span class='ui-li-aside'>$8.00</span></li>
+          <li>Chicken Broth w/ Pea Vine <span class='ui-li-aside'>$12.75</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='ricespaghetti'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Rice/Spaghetti</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='73' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Pork Chop Rice (Taiwanese Style) <span class='ui-li-aside'>$7.15</span></li>
+          <li>Hai Nan Chicken Rice <span class='ui-li-aside'>$7.15</span></li>
+          <li>Portuguese Chicken Rice <span class='ui-li-aside'>$7.50</span></li>
+          <li>Baked Pork Chop Rice/Spaghetti <span class='ui-li-aside'>$8.25</span></li>
+          <li>Baked Seafood Rice/Spaghetti <span class='ui-li-aside'>$9.25</span></li>
+          <li>Baked Fish Rice/Spaghetti <span class='ui-li-aside'>$8.25</span></li>
+          <li>Baked Prawn Rice/Spaghetti <span class='ui-li-aside'>$9.25</span></li>
+          <li>Curry Prawn Rice/Spaghetti <span class='ui-li-aside'>$9.25</span></li>
+          <li>Curry Fish Rice/Spaghetti <span class='ui-li-aside'>$8.25</span></li>
+          <li>Curry Beef Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Curry Beef Brisket Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Curry Chicken Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Curry Pork Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Indian Chicken Rice/Spaghetti <span class='ui-li-aside'>$7.50</span></li>
+          <li>Satay Chicken Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Satay Beef Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Satay Pork Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Lemongrass Chicken Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Lemongrass Pork Chop Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Sweet Corn Fish Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Sweet Corn Chicken Rice/Spaghetti <span class='ui-li-aside'>$7.50</span></li>
+          <li>Mushroom chicken Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Beef Vegetable Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Bean Curd Beef Rice <span class='ui-li-aside'>$6.75</span></li>
+          <li>Bitter Melon Beef rice <span class='ui-li-aside'>$6.75</span></li>
+          <li>Chicken Vegetable Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Stir Fried Shrimp w/ Egg Rice/Spaghetti <span class='ui-li-aside'>$7.50</span></li>
+          <li>Stir Fried Beef w/ Egg Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Black Bean Sauce Beef Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Black Bean Sauce Sparerib Rice/Spaghetti <span class='ui-li-aside'>$6.75</span></li>
+          <li>Bean Curd Vegetable Rice <span class='ui-li-aside'>$6.75</span></li>
+          <li>Chicken Fried Rice <span class='ui-li-aside'>$6.50</span></li>
+          <li>Beef Fried Rice <span class='ui-li-aside'>$6.50</span></li>
+          <li>Barbecued Pork Fried Rice <span class='ui-li-aside'>$6.50</span></li>
+          <li>Yang Chow Fried Rice <span class='ui-li-aside'>$7.50</span></li>
+          <li>Salt Fish Chicken Fried Rice <span class='ui-li-aside'>$9.00</span></li>
+          <li>Fried Rice w/ Seafood & Chicken Sauce <span class='ui-li-aside'>$10.00</span></li>
+          <li>Prawn Spaghetti/Rice <span class='ui-li-aside'>$9.50</span></li>
+          <li>Fish Spaghetti/Rice <span class='ui-li-aside'>$7.50</span></li>
+          <li>Chicken Spaghetti/Rice <span class='ui-li-aside'>$6.75</span></li>
+          <li>Beef Spaghetti/Rice <span class='ui-li-aside'>$6.75</span></li>
+          <li>Ground Beef Spaghetti/Rice <span class='ui-li-aside'>$6.75</span></li>
+          <li>Pan-fried Spaghetti w/ Beef <span class='ui-li-aside'>$7.50</span></li>
+          <li>Baked Spaghetti w/ Ground Beef & Cheese <span class='ui-li-aside'>$7.50</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='friednoodle'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Fried Noodle</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='117' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Pan Fried Rice Noodle Singapore Style <span class='ui-li-aside'>$7.50</span></li>
+          <li>Chow Fun w/ Shrimp & Chicken <span class='ui-li-aside'>$7.50</span></li>
+          <li>Beef Chow Fun <span class='ui-li-aside'>$7.50</span></li>
+          <li>Pepper Beef Chow Fun <span class='ui-li-aside'>$7.50</span></li>
+          <li>Satay Beef Chow Fun <span class='ui-li-aside'>$7.50</span></li>
+          <li>Curry Beef Brisket Chow Fun <span class='ui-li-aside'>$7.50</span></li>
+          <li>Pork Chow Fun/Mein <span class='ui-li-aside'>$7.50</span></li>
+          <li>Chicken Chow Fun/Mein <span class='ui-li-aside'>$7.50</span></li>
+          <li>Prawn Chow Fun/Mein <span class='ui-li-aside'>$9.50</span></li>
+          <li>Assorted Chow Fun/Mein <span class='ui-li-aside'>$7.50</span></li>
+          <li>Seafood Chow Fun/Mein <span class='ui-li-aside'>$9.50</span></li>
+          <li>Mix Vegetables Chow Fun/Mein <span class='ui-li-aside'>$6.50</span></li>
+          <li>Black Bean Sparerib Chow Fun/Mein <span class='ui-li-aside'>$7.50</span></li>
+          <li>Buddhist Delight Chow Mein <span class='ui-li-aside'>$7.50</span></li>
+          <li>Pan-fried E-Noodle <span class='ui-li-aside'>$8.50</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='soupnoodle'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Soup Noodle</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='132' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Pork Chop Soup Noodle (Taiwanese Style) <span class='ui-li-aside'>$7.15</span></li>
+          <li>Szechuan Beef Soup Noodle <span class='ui-li-aside'>$6.00</span></li>
+          <li>Nanjing Beef Soup Noodle <span class='ui-li-aside'>$6.00</span></li>
+          <li>Seafood Soup Noodle <span class='ui-li-aside'>$7.50</span></li>
+          <li>Assorted Soup Noodle <span class='ui-li-aside'>$6.75</span></li>
+          <li>Beef Brisket Soup Noodle (curry or oyster sauce) <span class='ui-li-aside'>$6.75</span></li>
+          <li>Shredded Pork w/ Preserved Veggie Soup Noodle <span class='ui-li-aside'>$6.00</span></li>
+          <li>Shredded Pork w/ Spice Preserved Veggie Soup Noodle <span class='ui-li-aside'>$6.00</span></li>
+          <li>Wonton Soup Noodle <span class='ui-li-aside'>$6.00</span></li>
+          <li>Chicken Soup Noodle <span class='ui-li-aside'>$6.00</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='congee'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Congee</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='142' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Pork w/ Preserved Egg Congee <span class='ui-li-aside'>$4.00</span></li>
+          <li>Seafood/Fish Fillet Congee <span class='ui-li-aside'>$5.50</span></li>
+          <li>Chicken Congee <span class='ui-li-aside'>$4.00</span></li>
+          <li>Beef Congee <span class='ui-li-aside'>$4.00</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='taiwaneseshavedice'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Taiwanese Shaved Ice</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='146' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>3 topping or Less <span class='ui-li-aside'>$3.30</span></li>
+          <li>4 Topping <span class='ui-li-aside'>$4.00</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='hotcolddrinks'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Drinks, Hot or Cold</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='148' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Pearl Milk Tea <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Pearl Milk Green Tea <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Papaya Pearl Drink <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Honeydew Pearl Drink <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Cantaloupe Pearl Drink <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Taro Pearl Drink <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Coconut Pearl Drink <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Strawberry Pearl Drink <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Sesame Pearl Drink <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Mixed Fruit Pearl Drink <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Pearl Coffee <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Pearl Coffee & Milk Tea <span class='ui-li-aside'>$2.50(H) $3.00(C)</span></li>
+          <li>Lemon Tea <span class='ui-li-aside'>$1.50(H) $2.00(C)</span></li>
+          <li>Lemon Honey Drink <span class='ui-li-aside'>$2.00(H) $2.50(C)</span></li>
+          <li>Lemon Coke <span class='ui-li-aside'>$2.00(H) $2.00(C)</span></li>
+          <li>Horlick <span class='ui-li-aside'>$1.75(H) $2.00(C)</span></li>
+          <li>Ovaltine <span class='ui-li-aside'>$1.75(H) $2.00(C)</span></li>
+          <li>Almond Drink <span class='ui-li-aside'>$1.75(H) $2.00(C)</span></li>
+          <li>Hong Kong Special Milk Tea <span class='ui-li-aside'>$1.75(H) $2.00(C)</span></li>
+          <li>Coffee <span class='ui-li-aside'>$1.75(H) $2.00(C)</span></li>
+          <li>Coffee & Milk Tea <span class='ui-li-aside'>$1.75(H) $2.00(C)</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div data-role='page' data-add-back-btn='true' id='colddrinks'>
+      <div data-role="header" data-theme='b' data-position='fixed'>
+        <h1>Cold Drinks</h1>
+      </div>
+      <div data-role='content'>
+        <ol start='169' data-role="listview" data-inset="true" data-theme="e" data-divider-theme="b">
+          <li>Red Bean Shaved Ice w/ Ice Cream <span class='ui-li-aside'>$3.00</span></li>
+          <li>Citron Tea <span class='ui-li-aside'>$3.00</span></li>
+          <li>Red Bean Milk Shake <span class='ui-li-aside'>$3.00</span></li>
+          <li>Green Bean Milk Shake <span class='ui-li-aside'>$3.00</span></li>
+          <li>Ice Cream Jelly <span class='ui-li-aside'>$3.00</span></li>
+          <li>Pineapple Milk Shake <span class='ui-li-aside'>$3.00</span></li>
+          <li>Avocado Pearl <span class='ui-li-aside'>$2.75</span></li>
+          <li>Banana Pearl <span class='ui-li-aside'>$2.75</span></li>
+          <li>Mango Pearl <span class='ui-li-aside'>$2.75</span></li>
+          <li>Watermelon Pearl <span class='ui-li-aside'>$2.75</span></li>
+        </ol>
+      </div>
+    </div>
+  </body>
+</html>

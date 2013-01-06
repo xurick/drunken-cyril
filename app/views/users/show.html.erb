@@ -41,11 +41,11 @@
          Convert another website
       </h3> 
       <div class='input-large input-append'>
-        <% if true %>
+        <% if Rails.env.production? %>
           <input style='height:34px' class='input-large' id='url_input' type='text' placeholder='Enter your site url here'></input>
         <% end %>
-        <% if false %>
-          <input style='height:34px' class='input-large' id='url_input' type='text' placeholder='Enter your site url here' data-provide='typeahead' data-items='10' data-source='<%= get_test_sites %>'></input>
+        <% if Rails.env.development? %>
+          <input style='height:34px' class='input-large' id='url_input' type='text' placeholder='Enter your site url here' data-provide='typeahead' data-items='30' data-source='<%= get_test_sites %>'></input>
         <% end %>
         <a id='action' class='btn btn-large btn-success'>Take action now!</a>
       </div>
