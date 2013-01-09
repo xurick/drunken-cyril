@@ -50,7 +50,12 @@ class SitesController < ApplicationController
       site.theme = params[:content][:md_theme][:value]
 
       if !params[:content][:buttons][:snippets].blank?
-        snippet_name = params[:content][:buttons][:snippets][:snippet_0][:name]
+        snippets = params[:content][:buttons][:snippets]
+        if !snippets[:snippet_0].nil?
+          snippet_name = snippets[:snippet_0][:name]
+        else
+          snippet_name = snippets[:snippet_1][:name]
+        end
         site.snippet = render_to_string(:file => "mercury/snippets/#{snippet_name}/preview", :layout => false)
       end
 
