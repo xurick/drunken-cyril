@@ -1,5 +1,5 @@
 class Site < ActiveRecord::Base
-  attr_accessible :content, :logo_img, :nav_menu, :url, :subdomain, :phone, :theme
+  attr_accessible :content, :logo_img, :nav_menu, :url, :subdomain, :phone, :theme, :snippet
   serialize :nav_menu
 
   has_many :addresses, dependent: :destroy

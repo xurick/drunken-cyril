@@ -20,33 +20,52 @@
       <div class='row'>
         <div class='span8'>
 
-          <div class='row'>
-            <h3 class="section_header left">
-              Pick a different template:
-            </h3>
+          <% name = Site.find(request.filtered_parameters['requested_uri']).subdomain %>
+          <h3 class='section_header left'>
+            Edit <%= name %>
+          </h3>
 
-            <div id="styles">
-              <ul class='thumbnails'>
-                <% theme = %w(A B C D E F G H I J K) %>
-                <% theme.each do |t| %>
-                  <li class='span2'>
-                  <%= link_to(image_tag("#{t}.png"), '#', id:"theme#{t}", class:'thumbnail')%>
-                  </li>
-                <% end %>
-              </ul>
+          <p>
+          <button id='save_button' class="btn btn-large btn-inverse">Save</button>
+          <button id='preview_button' class="btn btn-large btn-inverse" data-toggle='button'>Preview</button>
+          </p>
+
+          <br></br>
+
+          <ul class='nav nav-tabs'>
+            <li><a href='#style' data-toggle='pill'>style</a></li>
+            <li><a href='#inline' data-toggle='pill'>inline</a></li>
+            <li class='active'><a href='#widget' data-toggle='pill'>widget</a></li>
+          </ul>
+
+          <div class='tab-content'>
+            <div class='tab-pane fade' id='style'>
+              <div id="styles">
+                <ul class='thumbnails'>
+                  <% theme = %w(A B C D E F G H I J K) %>
+                  <% theme.each do |t| %>
+                    <li class='span2'>
+                    <%= link_to(image_tag("#{t}.png"), '#', id:"theme#{t}", class:'thumbnail')%>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
             </div>
-          </div>
 
-          <div class='row'>
-            <h3 class="section_header left">
-              Or edit directly inline:
-            </h3>
+            <div class='tab-pane fade' id='inline'>
+              <div id='edit_toolbar'>
+              </div>
+            </div>
 
-            <div id='edit_toolbar'>
+            <div class='tab-pane active fade in' id='widget'>
+              <div class='snippets'>
+                <img alt="Snippet Name" data-snippet="embedded_map" data-options="false" src="/assets/map.png">
+              </div>
             </div>
           </div>
 
         </div>
+
         <div class='span4'>
           <div class='mobile'>
             <div class='screen' id='mobile_screen'>
@@ -54,6 +73,7 @@
             </div>
           </div>  
         </div>
+
       </div>
     </div>
 

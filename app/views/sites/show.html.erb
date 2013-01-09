@@ -5,40 +5,47 @@
 <% end %>
 
 <% content_for :action_buttons do %>
-  <a href='tel:<%= @site.phone %>' data-role='button' data-inline='false' data-icon='phone'>Call Us!</a>
-  <a href=<%= @site.addresses ? make_map_url(@site.addresses.first) : '#' %> data-role='button' data-inline='false' data-icon='mappin'>Find Us!</a>
+  <div id='buttons' data-mercury='snippets'>
+    <a href='tel:<%= @site.phone %>' data-role='button' data-inline='false' data-icon='phone'>Call Us!</a>
+    <a href=<%= @site.addresses ? make_map_url(@site.addresses.first) : '#' %> data-role='button' data-inline='false' data-icon='mappin'>Find Us!</a>
+  </div>
+  <% if !@site.snippet.blank? %>
+    <%= raw @site.snippet %>
+  <% end %>
 <% end %>
 
 <% content_for :nav_menu do %>
-  <% if !@site.nav_menu.nil? %>
-    <% if @site.nav_menu.count < 4 %>
-      <ul id='nav' data-role='listview' data-inset='true'>
-        <% @site.nav_menu.each do |menu_item| %>
-          <li>
-          <%= link_to menu_item, '#' %> 
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <ul id='nav' data-role='listview' data-inset='true'>
-        <% @site.nav_menu[0..2].each do |menu_item| %>
-          <li>
-          <%= link_to menu_item, '#' %> 
-          </li>
-        <% end %>
-        <div data-role='collapsible'>
-          <h3>More</h3>
-          <ul id='nav' data-role='listview'>
-            <% @site.nav_menu[3..-1].each do |menu_item| %>
-              <li>
-              <%= link_to menu_item, '#' %> 
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </ul>
+  <div id='menu' data-mercury='snippets'>
+    <% if !@site.nav_menu.nil? %>
+      <% if @site.nav_menu.count < 4 %>
+        <ul id='nav' data-role='listview' data-inset='true'>
+          <% @site.nav_menu.each do |menu_item| %>
+            <li>
+            <%= link_to menu_item, '#' %> 
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <ul id='nav' data-role='listview' data-inset='true'>
+          <% @site.nav_menu[0..2].each do |menu_item| %>
+            <li>
+            <%= link_to menu_item, '#' %> 
+            </li>
+          <% end %>
+          <div data-role='collapsible'>
+            <h3>More</h3>
+            <ul id='nav' data-role='listview'>
+              <% @site.nav_menu[3..-1].each do |menu_item| %>
+                <li>
+                <%= link_to menu_item, '#' %> 
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </ul>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>
 
 <div id='site_content' data-mercury='full'>

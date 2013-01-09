@@ -101,9 +101,18 @@ window.Mercury = {
         insertLink:            ['Link', 'Insert Link', { modal: '/mercury/modals/link.html', regions: ['full', 'markdown'] }],
         insertMedia:           ['Media', 'Insert Media (images and videos)', { modal: '/mercury/modals/media.html', regions: ['full', 'markdown'] }],
         insertCharacter:       ['Character', 'Special Characters', { modal: '/mercury/modals/character.html', regions: ['full', 'markdown'] }],
-        htmlEditor:          ['Edit HTML', 'Edit the HTML content', { regions: ['full'] }]
+        htmlEditor:          ['Edit HTML', 'Edit the HTML content', { regions: ['full'] }],
+        snippetPanel:          ['Snippet', 'Snippet Panel', { panel: '/mercury/panels/snippets.html' }]
+        },
+      snippets: {
+        _custom:               true,
+        actions:               {
+          editSnippet:         ['Edit Snippet Settings'],
+          sep1:                ' ',
+          removeSnippet:       ['Remove Snippet']
         }
-      },
+      }
+    },
 
 
     // ## Region Options
@@ -362,6 +371,23 @@ window.Mercury = {
   debug: false
 
 };
+
+$(window).bind('mercury:ready', function() {
+  $('#save_button').click(function() {
+    Mercury.trigger('action', { action: 'save' })
+  });
+  $('#preview_button').click(function() {
+    //if(this.className.indexOf('active') == -1) {//Going to be pressed
+    Mercury.trigger('mode', { mode: 'preview' });
+  });
+
+  $('.snippets').find('img[data-snippet]').on('dragstart', function() {
+    return Mercury.snippet = {
+      name: jQuery(this).data('snippet'),
+      hasOptions: !(jQuery(this).data('options') === false)
+    }
+  });
+});
 
 $(window).bind('mercury:saved', function(data1, data2) {
   window.location.pathname = '/users/' + data2;

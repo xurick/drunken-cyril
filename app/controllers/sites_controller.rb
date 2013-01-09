@@ -44,13 +44,39 @@ class SitesController < ApplicationController
 
   def update
     site = current_user.sites.find(params[:id])
-    if params.has_key?(:content)
+
+    if params.has_key?(:content) #via Mercury update
       site.logo_img = params[:content][:logo_img][:value]
-      site.content = params[:content][:site_content][:value]
       site.theme = params[:content][:md_theme][:value]
-    elsif params.has_key?(:site)
+
+      if !params[:content][:buttons][:snippets].blank?
+        snippet_name = params[:content][:buttons][:snippets][:snippet_0][:name]
+        site.snippet = render_to_string(:file => "mercury/snippets/#{snippet_name}/preview", :layout => false)
+      end
+
+      #https://github.com/jejacks0n/mercury/issues/108
+      content = params[:content][:site_content]
+      if !content[:snippets].blank? #check if there are snippets, if yes, need to save
+        dom = Nokogiri::HTML.parse(content[:value])
+        snippet_name = content[:snippets][:snippet_0][:name]
+        class_selector = '.' + snippet_name + '-snippet'
+        dom.css(class_selector).each do |snippet|
+          #somehow if we don't remove these two attributes, upon the next save the snippets
+          #mysteriously disappeared! TODO
+          snippet.attributes['data-snippet'].remove
+          snippet.attributes['class'].remove
+          snippet.inner_html = render_to_string(:file => "mercury/snippets/#{snippet_name}/preview", :layout => false)
+        end
+
+        content[:value] = dom.xpath('//body').inner_html
+      end
+
+      site.content = content[:value]
+
+    elsif params.has_key?(:site) #update subdomain only via the golive dialog
       site.subdomain = params[:site][:subdomain]
     end
+
     site.save!
     # passing the current user ID to JS to redirect back to dashboard
     render text: current_user.id.to_s
