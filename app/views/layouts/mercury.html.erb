@@ -18,7 +18,7 @@
 
     <div class='container'>
       <div class='row'>
-        <div class='span8'>
+        <div class='span6'>
 
           <% name = Site.find(request.filtered_parameters['requested_uri']).subdomain %>
           <h3 class='section_header left'>
@@ -26,16 +26,22 @@
           </h3>
 
           <p>
-          <button id='save_button' class="btn btn-large btn-inverse">Save</button>
-          <button id='preview_button' class="btn btn-large btn-inverse" data-toggle='button'>Preview</button>
+          <button id='save_button' class="btn btn-large btn-success">
+            <i class='icon-save icon-large'></i>
+            Save
+          </button>
+          <button id='preview_button' class="btn btn-large btn-success" data-toggle='button'>
+            <i class='icon-eye-open icon-large'></i>
+            Preview
+          </button>
           </p>
 
           <br></br>
 
           <ul class='nav nav-tabs'>
-            <li><a href='#style' data-toggle='pill'>style</a></li>
-            <li><a href='#inline' data-toggle='pill'>inline</a></li>
-            <li class='active'><a href='#widget' data-toggle='pill'>widget</a></li>
+            <li><a href='#style' data-toggle='pill'>Templates</a></li>
+            <li><a href='#inline' data-toggle='pill'>Edit Content</a></li>
+            <li class='active'><a href='#widget' data-toggle='pill'>Add-ons</a></li>
           </ul>
 
           <div class='tab-content'>
@@ -58,15 +64,34 @@
             </div>
 
             <div class='tab-pane active fade in' id='widget'>
-              <div class='snippets'>
-                <img alt="Snippet Name" data-snippet="embedded_map" data-options="false" src="/assets/map.png">
-              </div>
+              <ul class='snippets thumbnails'>
+                <li class='span2'>
+                <a href='#' class='thumbnail'>
+                  <img alt="Snippet Name" data-snippet="embedded_map" data-options="false" src="/assets/map.png">
+                </a>
+                </li>
+                <li class='span2'>
+                <a href='#' class='thumbnail'>
+                  <img alt="Snippet Name" data-snippet="carousel" data-options="false" src="/assets/slideshow.png">
+                </a>
+                </li>
+                <li class='span2'>
+                <a href='#' class='thumbnail'>
+                  <img alt="Snippet Name" data-snippet="fb_checkin" data-options="false" src="/assets/fb_checkin.png">
+                </a>
+                </li>
+                <li class='span2'>
+                <a href='#' class='thumbnail'>
+                  <img alt="Snippet Name" data-snippet="fb_like" data-options="false" src="/assets/fb_like.png">
+                </a>
+                </li>
+              </ul>
             </div>
           </div>
 
         </div>
 
-        <div class='span4'>
+        <div class='span6'>
           <div class='mobile'>
             <div class='screen' id='mobile_screen'>
               <%#the editor frame should go here%>

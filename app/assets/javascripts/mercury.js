@@ -91,9 +91,8 @@ window.Mercury = {
     // the properties of the given node.  You can see examples of contexts in, and add your own to:
     // `Mercury.Toolbar.Button.contexts` and `Mercury.Toolbar.ButtonGroup.contexts`
     toolbars: {
+
       primary: {
-        save:                  ['Save', 'Save this page'],
-        preview:               ['Preview', 'Preview this page', { toggle: true, mode: true }],
         undoredo:              {
           undo:                ['Undo', 'Undo your last action'],
           redo:                ['Redo', 'Redo your last action'],
@@ -104,6 +103,79 @@ window.Mercury = {
         htmlEditor:          ['Edit HTML', 'Edit the HTML content', { regions: ['full'] }],
         snippetPanel:          ['Snippet', 'Snippet Panel', { panel: '/mercury/panels/snippets.html' }]
         },
+
+      editable: {
+        _regions:              ['full', 'markdown'],
+        predefined:            {
+          style:               ['Style', null, { select: '/mercury/selects/style.html', preload: true }],
+          sep1:                ' ',
+          formatblock:         ['Block Format', null, { select: '/mercury/selects/formatblock.html', preload: true }],
+          sep2:                '-'
+        },
+        colors:                {
+          backColor:           ['Background Color', null, { palette: '/mercury/palettes/backcolor.html', context: true, preload: true, regions: ['full'] }],
+          sep1:                ' ',
+          foreColor:           ['Text Color', null, { palette: '/mercury/palettes/forecolor.html', context: true, preload: true, regions: ['full'] }],
+          sep2:                '-'
+        },
+        decoration:            {
+          bold:                ['Bold', null, { context: true }],
+          italic:              ['Italicize', null, { context: true }],
+          overline:            ['Overline', null, { context: true, regions: ['full'] }],
+          strikethrough:       ['Strikethrough', null, { context: true, regions: ['full'] }],
+          underline:           ['Underline', null, { context: true, regions: ['full'] }],
+          sep:                 '-'
+        },
+        script:                {
+          subscript:           ['Subscript', null, { context: true }],
+          superscript:         ['Superscript', null, { context: true }],
+          sep: '-'
+        },
+        justify:               {
+          justifyLeft:         ['Align Left', null, { context: true, regions: ['full'] }],
+          justifyCenter:       ['Center', null, { context: true, regions: ['full'] }],
+          justifyRight:        ['Align Right', null, { context: true, regions: ['full'] }],
+          justifyFull:         ['Justify Full', null, { context: true, regions: ['full'] }],
+          sep:                 '-'
+        },
+        list:                  {
+          insertUnorderedList: ['Unordered List', null, { context: true }],
+          insertOrderedList:   ['Numbered List', null, { context: true }],
+          sep:                 '-'
+        },
+        indent:                {
+          outdent:             ['Decrease Indentation'],
+          indent:              ['Increase Indentation'],
+          sep:                 '-'
+        },
+        table:                 {
+          _context:            true,
+          insertRowBefore:     ['Insert Table Row', 'Insert a table row before the cursor', { regions: ['full'] }],
+          insertRowAfter:      ['Insert Table Row', 'Insert a table row after the cursor', { regions: ['full'] }],
+          deleteRow:           ['Delete Table Row', 'Delete this table row', { regions: ['full'] }],
+          insertColumnBefore:  ['Insert Table Column', 'Insert a table column before the cursor', { regions: ['full'] }],
+          insertColumnAfter:   ['Insert Table Column', 'Insert a table column after the cursor', { regions: ['full'] }],
+          deleteColumn:        ['Delete Table Column', 'Delete this table column', { regions: ['full'] }],
+          sep1:                ' ',
+          increaseColspan:     ['Increase Cell Columns', 'Increase the cells colspan'],
+          decreaseColspan:     ['Decrease Cell Columns', 'Decrease the cells colspan and add a new cell'],
+          increaseRowspan:     ['Increase Cell Rows', 'Increase the cells rowspan'],
+          decreaseRowspan:     ['Decrease Cell Rows', 'Decrease the cells rowspan and add a new cell'],
+          sep2:                '-'
+        },
+        rules:                 {
+          horizontalRule:      ['Horizontal Rule', 'Insert a horizontal rule'],
+          sep1:                '-'
+        },
+        formatting:            {
+          removeFormatting:    ['Remove Formatting', 'Remove formatting for the selection', { regions: ['full'] }],
+          sep2:                ' '
+        },
+        editors:               {
+          htmlEditor:          ['Edit HTML', 'Edit the HTML content', { regions: ['full'] }]
+        }
+      },
+
       snippets: {
         _custom:               true,
         actions:               {

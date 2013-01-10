@@ -14,22 +14,22 @@
               </td>
               <td>
                 <%= link_to('/editor/'+site.id.to_s, class: 'btn btn-success') do %>
-                  <i class='icon-edit icon-white'></i> Edit
+                  <i class='icon-edit icon-large'></i> Edit
                 <% end %>
               </td>
               <td>
                 <% modalIdSelector = '#goLiveModal_' + site.subdomain %>
                 <%= link_to(modalIdSelector, class: 'btn btn-success', data: { toggle: 'modal' } ) do %>
-                  <i class='icon-globe icon-white'></i> Live
+                  <i class='icon-globe icon-large'></i> Live
                 <% end %>
                 <%= render :partial => 'goLiveModal', :locals => { :site => site } %>
               </td>
               <td>
-                <a class='btn btn-success disabled' href='#'><i class='icon-facetime-video icon-white'></i> Traffic</a>
+                <a class='btn btn-success disabled' href='#'><i class='icon-facetime-video icon-large'></i> Traffic</a>
               </td>
               <td>
                 <%= link_to(site, class: 'btn btn-danger', method: :delete, data: { confirm: site.subdomain + '.com' }) do %>
-                  <i class='icon-trash icon-white'></i> Delete</a>
+                  <i class='icon-trash icon-large'></i> Delete</a>
                 <% end %>
               </td>
             </tr>
@@ -47,7 +47,10 @@
         <% if Rails.env.development? %>
           <input style='height:34px' class='input-large' id='url_input' type='text' placeholder='Enter your site url here' data-provide='typeahead' data-items='30' data-source='<%= get_test_sites %>'></input>
         <% end %>
-        <a id='action' class='btn btn-large btn-success'>Take action now!</a>
+        <a id='action' class='btn btn-large btn-success'>
+          <i class='icon-bolt icon-large'></i>
+          Take action now!
+        </a>
       </div>
     </div>
 
