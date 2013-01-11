@@ -40,7 +40,6 @@
 
           <ul class='nav nav-tabs'>
             <li><a href='#style' data-toggle='pill'>Templates</a></li>
-            <li><a href='#inline' data-toggle='pill'>Edit Content</a></li>
             <li class='active'><a href='#widget' data-toggle='pill'>Add-ons</a></li>
           </ul>
 
@@ -55,11 +54,6 @@
                     </li>
                   <% end %>
                 </ul>
-              </div>
-            </div>
-
-            <div class='tab-pane fade' id='inline'>
-              <div id='edit_toolbar'>
               </div>
             </div>
 
@@ -83,6 +77,11 @@
                 <li class='span2'>
                 <a href='#' class='thumbnail'>
                   <img alt="Snippet Name" data-snippet="fb_like" data-options="false" src="/assets/fb_like.png">
+                </a>
+                </li>
+                <li class='span2'>
+                <a href='#' class='thumbnail'>
+                  <img alt="Snippet Name" data-snippet="youtube" data-options="false" src="/assets/youtube.png">
                 </a>
                 </li>
               </ul>
@@ -113,14 +112,7 @@
         saveMethod: null, // 'PUT', or 'POST', (create, vs. update -- default PUT)
         visible:    true,  // boolean - if the interface should start visible or not
         iframeSrcUrl: "<%= site_path(request.params[:requested_uri].to_i, params: { mobile: 1 }) %>",
-        appendTo: '#mobile_screen',
-        toolbarOptions: {
-          appendTo: '#edit_toolbar'
-        },
-        statusbarOptions: {
-          appendTo: '#edit_toolbar',
-          visible: false
-        }
+        appendTo: '#mobile_screen'
       });
     </script>
   </body>
