@@ -16,3 +16,8 @@ $(document).delegate('.ui-page', 'pageinit', function () {
     this.style.display = 'none';
   });
 });
+
+/*http://jsfiddle.net/budwhite/eKZLf/*/
+$('#home').live('pageshow',function(){
+  window.slider = new Swipe(document.getElementById('slider'));
+});

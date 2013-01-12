@@ -32,8 +32,8 @@ gem 'fastimage', '1.2.13'
 gem 'rmagick', '~> 2.13.1'
 gem "simple_form", "~> 2.0.2"
 gem "validates_as_phone_number", "~> 0.7.5"
-#gem "mercury-rails", :path => '/Users/budwhite/repo/mercury'
-gem 'mercury-rails', :git => 'git://github.com/budwhite/mercury.git'
+gem "mercury-rails", :path => '/Users/budwhite/repo/mercury'
+#gem 'mercury-rails', :git => 'git://github.com/budwhite/mercury.git'
 gem "spinjs-rails", "~> 0.0.4"
 gem 'paperclip', "~> 3.4.0"
 gem "active_attr", "~> 0.7.0"

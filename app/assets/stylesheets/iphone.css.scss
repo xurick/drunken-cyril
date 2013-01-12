@@ -118,3 +118,18 @@ img#logo {
   border-radius: 6px;
   box-shadow: 0px 0px 1px 1px #CFCFCF;
 }
+
+/*http://jsfiddle.net/budwhite/eKZLf/*/
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap div {
+  float:left;
+  width:100%;
+  position: relative;
+}

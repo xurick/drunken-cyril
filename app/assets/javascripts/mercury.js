@@ -375,6 +375,25 @@ $(window).bind('mercury:ready', function() {
       hasOptions: !(jQuery(this).data('options') === false)
     }
   });
+
+  $('#modal-form-submit').on('click', function(e) {
+    e.preventDefault();
+
+    $('#myModal').find('form').on('submit', function(event) {
+      var serializedForm, snippet;
+      event.preventDefault();
+      serializedForm = $(this).serializeObject();
+      snippet = Mercury.Snippet.create($('#snippet-name').html(), serializedForm);
+      Mercury.trigger('action', {
+        action: 'insertSnippet',
+        value: snippet
+      });
+    });
+
+    $('#modal-form').submit();
+    $('#myModal').modal('hide');
+  });
+
 });
 
 $(window).bind('mercury:saved', function(data1, data2) {
