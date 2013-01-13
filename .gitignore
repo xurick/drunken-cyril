@@ -12,7 +12,7 @@ capybara-*.html
 /log/*
 /tmp/*
 /db/*.sqlite3
-/public/**
+/public/assets/**
 /coverage/
 /spec/tmp/*
 **.orig

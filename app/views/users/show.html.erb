@@ -11,7 +11,7 @@
             <tr id='row_<%= site.id.to_s %>'>
               <td>
                 <h4>
-                  <%= link_to(site.subdomain + '.' + request.host_with_port, class: 'text-success', rel: 'tooltip', title: 'Click to go to the mobile site') do %>
+                  <%= link_to('http://' + site.subdomain + '.mbilify.com', class: 'text-success', rel: 'tooltip', title: 'Click to go to the mobile site') do %>
                     <i class='icon-mobile-phone icon-large'></i> <%= site.subdomain.capitalize %>
                   <% end %>
                 </h4>
