@@ -22,6 +22,7 @@ $(function() {
   });
 
   $(selector).first().click();
+
 });
 
 function switchPreview(id) {

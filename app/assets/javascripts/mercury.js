@@ -364,9 +364,17 @@ $(window).bind('mercury:ready', function() {
   $('#save_button').click(function() {
     Mercury.trigger('action', { action: 'save' })
   });
+
   $('#preview_button').click(function() {
-    //if(this.className.indexOf('active') == -1) {//Going to be pressed
     Mercury.trigger('mode', { mode: 'preview' });
+  });
+
+  $('#undo_button').click(function() {
+    Mercury.trigger('action', { action: 'undo' });
+  });
+
+  $('#redo_button').click(function() {
+    Mercury.trigger('action', { action: 'redo' });
   });
 
   $('.snippets').find('img[data-snippet]').on('dragstart', function() {
@@ -374,24 +382,6 @@ $(window).bind('mercury:ready', function() {
       name: jQuery(this).data('snippet'),
       hasOptions: !(jQuery(this).data('options') === false)
     }
-  });
-
-  $('#modal-form-submit').on('click', function(e) {
-    e.preventDefault();
-
-    $('#myModal').find('form').on('submit', function(event) {
-      var serializedForm, snippet;
-      event.preventDefault();
-      serializedForm = $(this).serializeObject();
-      snippet = Mercury.Snippet.create($('#snippet-name').html(), serializedForm);
-      Mercury.trigger('action', {
-        action: 'insertSnippet',
-        value: snippet
-      });
-    });
-
-    $('#modal-form').submit();
-    $('#myModal').modal('hide');
   });
 
 });

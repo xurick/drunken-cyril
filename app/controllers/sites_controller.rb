@@ -63,13 +63,9 @@ class SitesController < ApplicationController
       content = params[:content][:site_content]
       if !content[:snippets].blank? #check if there are snippets, if yes, need to save
         dom = Nokogiri::HTML.parse(content[:value])
-        snippet_obj = content[:snippets][:snippet_0]
-        class_selector = '.' + snippet_obj[:name] + '-snippet'
-        dom.css(class_selector).each do |snippet|
-          #somehow if we don't remove these two attributes, upon the next save the snippets
-          #mysteriously disappeared! TODO
-          #snippet.attributes['data-snippet'].remove
-          #snippet.attributes['class'].remove
+        dom.css(%Q{div[class$='-snippet']}).each do |snippet|
+          snippet_id = snippet.attributes['data-snippet'].value
+          snippet_obj = content[:snippets][snippet_id]
           snippet.inner_html = render_to_string(:file => "mercury/snippets/#{snippet_obj[:name]}/preview", 
                                                 :locals => { :params => snippet_obj },
                                                 :layout => false)

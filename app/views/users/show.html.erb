@@ -9,23 +9,27 @@
         <tbody>
           <% @user.sites.each do |site| %>
             <tr id='row_<%= site.id.to_s %>'>
-              <td class='text-success'>
-                <strong><%= site.subdomain.capitalize %></strong>
+              <td>
+                <h4>
+                  <%= link_to(site.subdomain + '.' + request.host_with_port, class: 'text-success', rel: 'tooltip', title: 'Click to go to the mobile site') do %>
+                    <i class='icon-mobile-phone icon-large'></i> <%= site.subdomain.capitalize %>
+                  <% end %>
+                </h4>
               </td>
               <td>
-                <%= link_to('/editor/'+site.id.to_s, class: 'btn btn-success') do %>
+                <%= link_to('/editor/'+site.id.to_s, class: 'btn btn-success', rel: 'tooltip', title: 'Edit the mobile site') do %>
                   <i class='icon-edit icon-large'></i> Edit
                 <% end %>
               </td>
               <td>
                 <% modalIdSelector = '#goLiveModal_' + site.subdomain %>
-                <%= link_to(modalIdSelector, class: 'btn btn-success', data: { toggle: 'modal' } ) do %>
-                  <i class='icon-globe icon-large'></i> Live
+                <%= link_to(modalIdSelector, class: 'btn btn-success', data: { toggle: 'modal' }, rel: 'tooltip', title: 'Edit domain name and redirect from your desktop site' ) do %>
+                  <i class='icon-globe icon-large'></i> Go Live
                 <% end %>
                 <%= render :partial => 'goLiveModal', :locals => { :site => site } %>
               </td>
               <td>
-                <a class='btn btn-success disabled' href='#'><i class='icon-facetime-video icon-large'></i> Traffic</a>
+                <a rel='tooltip' title='Coming soon!' class='btn btn-success disabled' href='#'><i class='icon-facetime-video icon-large'></i> Traffic</a>
               </td>
               <td>
                 <%= link_to(site, class: 'btn btn-danger', method: :delete, data: { confirm: site.subdomain + '.com' }) do %>

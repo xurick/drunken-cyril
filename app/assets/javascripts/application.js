@@ -25,6 +25,9 @@
 // from http://lesseverything.com/blog/archives/2012/07/18/customizing-confirmation-dialog-in-rails/
 // overriding default Rails handling of confirm dialog
 $(function() {
+  // has to write or bootstrap tooltip will not work everywhere
+  $("[rel='tooltip']").tooltip();
+
   $.rails.allowAction = function(link) {
     if (!link.attr('data-confirm')) {
       return true;

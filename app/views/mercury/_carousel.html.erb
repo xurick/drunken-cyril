@@ -1,0 +1,55 @@
+<div id="modal_carousel" class="modal hide fade" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>Select images for the carousel</h3>
+  </div>
+  <div class="modal-body">
+    <!-- content will come from /mercury/snippets/carousel/options via AJAX -->
+  </div>
+  <div class="modal-footer">
+    <button id='carousel_form_submit' class="btn btn-success">
+      <i class='icon-mobile-phone icon-large'></i>  
+      Insert Add-on
+    </button>
+  </div>
+  <script>
+    var img_counter = 1;
+
+    $(document).on('click', 'button.add', function() {
+      img_counter++;
+
+      var cloned = $('#carousel_form > div.control-group:first').clone(true);
+      cloned.find('label').attr('for', 'options_img'+img_counter).html('Image '+img_counter);
+      cloned.find('input').attr({
+        id: 'options_img'+img_counter,
+        name: 'options[Img'+img_counter+']',
+        value: ''
+      }).after("<button class='btn remove'><i class='icon-remove'></i></button>");
+      cloned.appendTo('#carousel_form');
+
+    });
+
+    $(document).on('click', 'button.remove', function() {
+      img_counter--;
+      $(this).parentsUntil('form').remove();
+    });
+
+    $(document).on('click', '#carousel_form_submit', function(e) {
+      e.preventDefault();
+      var carousel_form = $('#modal_carousel').find('form'); 
+      carousel_form.on('submit', function(event) {
+        var serializedForm, snippet;
+        event.preventDefault();
+        serializedForm = $(this).serializeObject();
+        snippet = Mercury.Snippet.create($('#snippet-name').html(), serializedForm);
+        Mercury.trigger('action', {
+          action: 'insertSnippet',
+          value: snippet
+        });
+      });
+
+      carousel_form.submit();
+      $('#modal_carousel').modal('hide');
+    });
+  </script>
+</div>

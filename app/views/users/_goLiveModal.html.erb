@@ -2,17 +2,32 @@
 <div id=<%= modalId %> class='modal hide fade'>
   <div class='modal-header'>
     <button type='button' class='close' data-dismiss='modal'>×</button>
-    <h3>Make it live for <%= site.subdomain %></h3>
+    <h3>Reveal your new mobile site to your customers on the go!</h3>
   </div>
   <div class='modal-body'>
-    <%= form_for site, :remote => true  do |f| %>
-      <%= f.label 'Your mobile URL:' %>
-      <%= f.text_field :subdomain, :placeholder => site.subdomain %>.mbilify.com
+    <p>
+      <span class='label label-important'>Note!</span> Your mobile site was already made live under a subdomain on mbilify.com. Follow these steps to redirect your mobile visitors.
+    </p>
+    <p>
+    <span class='badge badge-success'>1</span> Optionally edit your mobile URL:
+    </p>
+    <%= form_for site, { remote: true, html: {class: 'form-inline'} }  do |f| %>
+    <%= f.text_field :subdomain, :placeholder => site.subdomain %>.mbilify.com
+      <button type='submit' class='btn btn-success'>
+        <i class='icon-ok'></i>
+      </button>
+    <% end %>
+
+    <p>
+    <span class='badge badge-success'>2</span> Paste the following block of code into the <code>&lt;head&gt;</code> section of your current home page HTML:
+    </p>
+    <pre>
+  &lt;p&gt;alert('hi');&lt;/p&gt;
+    </pre>
   </div>
+
   <div class='modal-footer'>
     <button class='btn' data-dismiss='modal'>Close</button>
-    <%= f.submit 'Go Live!', :class => 'btn btn-success' %>
   </div>
-  <% end %>
 
 </div>
