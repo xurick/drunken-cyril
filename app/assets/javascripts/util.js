@@ -454,7 +454,7 @@ var mdot = (function(parent, $) {
   }
 
   my.findNav = function(dtBody) {
-    var menuItems = [];
+    var menuItems = {};
     var $navElem;
 
     // use $('li').has('ul') to test for sub-level menus
@@ -468,24 +468,25 @@ var mdot = (function(parent, $) {
       $navElem.each(function() {
         var txt = $(this).text().trim();
         if(txt != '') {
-          menuItems.push(txt);
+          menuItems[txt] = this.href;
         }
         else {
           var $img = $(this).find('img');
           if($img.length > 0) {
 
             if($img.attr('alt') && $img.attr('alt')!='') {
-              menuItems.push($img.attr('alt'));
+              menuItems[$img.attr('alt')] = this.href;
             }
             else {// grab the href of <a> and camelcase into separate words 
 
               var name = $(this).url('true').attr('file');
               if(name != '') {
-                menuItems.push(name.slice(0, name.indexOf('.'))
+                name = name.slice(0, name.indexOf('.'))
                   .replace(/([A-Z])/g, ' $1')
                   .replace(/^./, function(str) { 
                     return str.toUpperCase(); 
-                  }));
+                  });
+                menuItems[name] = this.href;
               }
             }
           }
@@ -510,24 +511,25 @@ var mdot = (function(parent, $) {
 
         var txt = $(this).text().trim();
         if(txt != '') {
-          menuItems.push(txt);
+          menuItems[txt] = this.href;
         }
         else {
           var $img = $(this).find('img');
           if($img.length > 0) {
 
             if($img.attr('alt') && $img.attr('alt')!='') {
-              menuItems.push($img.attr('alt'));
+              menuItems[$img.attr('alt')] = this.href;
             }
             else {// grab the href of <a> and camelcase into separate words 
 
               var name = $(this).url('true').attr('file');
               if(name != '') {
-                menuItems.push(name.slice(0, name.indexOf('.'))
+                name = name.slice(0, name.indexOf('.'))
                   .replace(/([A-Z])/g, ' $1')
                   .replace(/^./, function(str) { 
                     return str.toUpperCase(); 
-                  }));
+                  });
+                menuItems[name] = this.href;
               }
             }
           }
@@ -535,9 +537,8 @@ var mdot = (function(parent, $) {
       });
     }
 
-    if(menuItems.length > 0) {
+    if(!$.isEmptyObject(menuItems)) {
       $navElem.addClass('ignore');
-      return menuItems;
     }
 
     return menuItems;

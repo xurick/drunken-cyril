@@ -19,25 +19,26 @@
     <% if !@site.nav_menu.nil? %>
       <% if @site.nav_menu.count < 4 %>
         <ul id='nav' data-role='listview' data-inset='true'>
-          <% @site.nav_menu.each do |menu_item| %>
+          <% @site.nav_menu.each do |name,url| %>
             <li>
-            <%= link_to menu_item, '#' %> 
+            <%= link_to name, url %> 
             </li>
           <% end %>
         </ul>
       <% else %>
         <ul id='nav' data-role='listview' data-inset='true'>
-          <% @site.nav_menu[0..2].each do |menu_item| %>
+          <% debugger %>
+          <% @site.nav_menu.keys[0..2].each do |name| %>
             <li>
-            <%= link_to menu_item, '#' %> 
+            <%= link_to name, @site.nav_menu[name] %> 
             </li>
           <% end %>
           <div data-role='collapsible'>
             <h3>More</h3>
             <ul id='nav' data-role='listview'>
-              <% @site.nav_menu[3..-1].each do |menu_item| %>
+              <% @site.nav_menu.keys[3..-1].each do |name| %>
                 <li>
-                <%= link_to menu_item, '#' %> 
+                <%= link_to name, @site.nav_menu[name] %> 
                 </li>
               <% end %>
             </ul>
