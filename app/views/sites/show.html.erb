@@ -27,7 +27,6 @@
         </ul>
       <% else %>
         <ul id='nav' data-role='listview' data-inset='true'>
-          <% debugger %>
           <% @site.nav_menu.keys[0..2].each do |name| %>
             <li>
             <%= link_to name, @site.nav_menu[name] %> 

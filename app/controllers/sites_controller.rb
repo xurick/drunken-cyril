@@ -5,7 +5,6 @@ class SitesController < ApplicationController
   before_filter :signed_in_user, :except => [:show, :cafeori]
 
   def create
-    debugger
     @site = current_user.sites.build(
       :url => params[:url],
       :logo_img => params[:logo],
