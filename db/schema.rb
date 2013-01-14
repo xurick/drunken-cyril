@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109163412) do
+ActiveRecord::Schema.define(:version => 20130114075315) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street1"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20130109163412) do
     t.integer  "user_id"
     t.string   "url"
     t.string   "logo_img"
-    t.string   "nav_menu"
+    t.text     "nav_menu"
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

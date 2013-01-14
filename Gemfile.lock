@@ -1,5 +1,6 @@
-PATH
-  remote: /Users/budwhite/repo/mercury
+GIT
+  remote: git://github.com/budwhite/mercury.git
+  revision: 38a3b86b64bc94c02f6de1c94f9342949fd25e68
   specs:
     mercury-rails (0.9.0)
       coffee-rails (~> 3.2.2)
