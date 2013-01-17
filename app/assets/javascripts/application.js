@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.url
 //= require jquery.spin
+//= require jquery.countdown
 //= require bootstrap
 //= require theme
 //= require init

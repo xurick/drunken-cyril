@@ -2,7 +2,9 @@
 /*http://blog.crowdint.com/2012/06/04/bootstrap-themes-with-bootswatch.html*/
 /*@import 'bootswatch/spruce/variables';*/
 
-@import 'bootstrap';
+/*using the 'measure' theme's customized bootstrap*/
+/*for the generic one that comes with bootstrap-scss, use @import 'bootstrap'*/
+@import 'bootstrap-custom';
 
 // Bootstrap body padding for fixed navbar
 /*body { padding-top: 60px; }*/

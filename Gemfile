@@ -15,7 +15,6 @@ group :production do
 end
 
 group :assets do
-  gem 'bootswatch-rails', '~> 0.1.0'
   gem 'sass-rails',   '~> 3.2.5'
   gem 'uglifier', '~> 1.3.0'
   gem 'font-awesome-sass-rails', '~> 3.0.0.1'

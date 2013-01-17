@@ -1,0 +1,71 @@
+<div id="comingsoon" class="comingsoon_page">
+  <div class="container">
+    <div class="countdown">
+      <div class="row">
+        <div class="span6 offset1 left">
+          <h1>We are launching very soon...</h1>
+          <p>
+          By this year alone more people will use their mobile phones than PCs to get online. Users expect their mobile experience to be as good as their desktop experience, however much of the web is till not mobile ready. This is where we come in, we are creating a tool that can take your desktop website and make it mobile friendly instantly.
+          </p>
+        </div>
+        <div id='clock' class="span5 right">
+          <div class="figure">
+            <div class="square">
+              <span id='days'></span>
+            </div>
+            <label>DAYS</label>
+          </div>
+          <div class="figure">
+            <div class="square">
+              <span id='hours'></span>
+            </div>
+            <label>HOURS</label>
+          </div>
+          <div class="figure">
+            <div class="square">
+              <span id='minutes'></span>
+            </div>
+            <label>MINUTES</label>
+          </div>
+          <div class="figure">
+            <div class="square">
+              <span id='seconds'></span>
+            </div>
+            <label>SECONDS</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="subscribe">
+      <div class="row">
+        <div class="span12">
+          <div class="follow">
+            <strong>Follow us</strong>
+            <a href="http://twitter.com/mbilify">
+              <i class="social tw"></i>
+            </a>
+            <a href="http://www.facebook.com/Mbilify">
+              <i class="social fb"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('div#clock').countdown('2013/01/24 16:00:00', function(e) {
+      var $this = $(this);
+      switch(e.type) {
+        case "seconds":
+        case "minutes":
+        case "hours":
+        case "days":
+          $this.find('span#'+e.type).html(e.value);
+          break;
+      }
+    });
+  });
+</script>

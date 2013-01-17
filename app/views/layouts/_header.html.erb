@@ -11,7 +11,7 @@
 
       <%= link_to root_path, class: 'brand', :'data-section' => 'body' do %>
         <%# image_tag('santa_hat_24.png', :style => 'position: relative; right: -24px; margin-top: -21px') %>
-        <%= image_tag('logo_green.png', :alt => 'logo') %>
+        <%= image_tag('logo_uppercase.png', :alt => 'logo') %>
       <% end %>
 
       <div class='nav-collapse collapse'>
@@ -46,7 +46,9 @@
 
           <% else %>
 
-            <li><%= link_to 'Sign up', signup_path, class: 'btn-header' %></li>
+            <% if false %>
+              <li><%= link_to 'Sign up', signup_path, class: 'btn-header' %></li>
+            <% end %>
             <li><%= link_to 'Sign in', signin_path, class: 'btn-header' %></li>
 
           <% end %>
