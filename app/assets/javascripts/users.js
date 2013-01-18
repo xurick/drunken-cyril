@@ -21,7 +21,7 @@ $(function() {
     }
   });
 
-  $(selector).first().click();
+  $(selector).last().click();
 
 });
 
