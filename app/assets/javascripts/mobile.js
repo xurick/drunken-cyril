@@ -21,6 +21,10 @@ $(document).delegate('.ui-page', 'pageinit', function () {
 /*http://jsfiddle.net/budwhite/eKZLf/*/
 $('#home').live('pageshow',function(){
   window.slider = new Swipe(document.getElementById('slider'));
-  //$('#switch_to_classic').popup({history:false});
-  //$('#switch_to_classic').popup('open');
+
+  if($.cookie('switch_to_classic_popup') == null) {
+    $.cookie('switch_to_classic_popup', 'foo', { expires: 7 });
+    $('#switch_to_classic').popup({history:false});
+    $('#switch_to_classic').popup('open', { x:0, y:0, transition:'slidedown' });
+  }
 });

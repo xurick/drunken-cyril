@@ -17,10 +17,10 @@
         <div id='md_theme' data-mercury='full' style='display:none'><%= @site.theme %></div>
         <a href="<%= @site.url + '?no_redirect=1' %>" data-role='button' data-inline='false' data-icon='back'>Go to full site</a>
       </div>
-      <% if false %>
+      <% if true %>
         <div data-role="popup" id='switch_to_classic' class='ui-content' data-theme='e' data-overlay-theme='a'>
           <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
-          <p>This page has been optimized for mobile. Tap here if you wish to go to the full site.</p>
+          <p>Welcome to <%= @site.subdomain + '.com' %>'s mobile website. Tap <a href="<%= @site.url + '?no_redirect=1' %>">here</a> or the button at the end of this page to go to the full site. Thanks!</p>
         </div>
       <% end %>
     </div>
