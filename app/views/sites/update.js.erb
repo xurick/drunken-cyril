@@ -1,0 +1,14 @@
+var $msg = $("div[id*='<%= extract_name(@site.url) %>']");
+
+$msg.html('<strong>On snap!</strong>');
+$msg.append($("<button type='button' class='close' data-dismiss='alert'>&times;</button>"));
+<% if @site.errors.any? %>
+  $msg.addClass('alert alert-error');
+  var $errors = $('<ul />');
+  <% @site.errors.full_messages.each do |error| %>
+    $errors.append('<li><%= escape_javascript( error ) %></li>');
+  <% end %>
+  $errors.appendTo($msg);
+<% else %>
+  $msg.addClass('alert alert-success').html('Subdomain name updated!');
+<% end %>

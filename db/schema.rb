@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114075315) do
+ActiveRecord::Schema.define(:version => 20130121212734) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street1"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130114075315) do
     t.string   "snippet"
   end
 
+  add_index "sites", ["subdomain"], :name => "index_sites_on_subdomain", :unique => true
   add_index "sites", ["user_id"], :name => "index_sites_on_user_id"
 
   create_table "users", :force => true do |t|

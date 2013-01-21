@@ -12,7 +12,8 @@
     <span class='badge badge-success'>1</span> Optionally edit your mobile URL:
     </p>
     <%= form_for site, { remote: true, html: {class: 'form-inline'} }  do |f| %>
-    <%= f.text_field :subdomain, :placeholder => site.subdomain %>.mbilify.com
+      <div id= 'subd_edit_<%= site.subdomain %>' ></div>
+      <%= f.text_field :subdomain, :placeholder => site.subdomain %>.mbilify.com
       <button type='submit' class='btn btn-success'>
         <i class='icon-ok'></i>
       </button>

@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  helper_method :make_map_url
+  helper_method :make_map_url, :extract_name
   layout :mobile_or_not
 
   before_filter :signed_in_user, :except => [:show, :cafeori]
@@ -10,7 +10,7 @@ class SitesController < ApplicationController
       :logo_img => params[:logo],
       :nav_menu => params[:menu],
       :content => params[:content],
-      :subdomain => extract_name(params[:url]),
+      :subdomain => normalize(extract_name(params[:url])),
       :phone => params[:phone],
       :theme => 'd' # default theme TODO
     )
@@ -43,11 +43,11 @@ class SitesController < ApplicationController
   end
 
   def update
-    site = current_user.sites.find(params[:id])
+    @site = current_user.sites.find(params[:id])
 
     if params.has_key?(:content) #via Mercury update
-      site.logo_img = params[:content][:logo_img][:value]
-      site.theme = params[:content][:md_theme][:value]
+      @site.logo_img = params[:content][:logo_img][:value]
+      @site.theme = params[:content][:md_theme][:value]
 
       if !params[:content][:buttons][:snippets].blank?
         snippets = params[:content][:buttons][:snippets]
@@ -56,7 +56,7 @@ class SitesController < ApplicationController
         else
           snippet_name = snippets[:snippet_1][:name]
         end
-        site.snippet = render_to_string(:file => "mercury/snippets/#{snippet_name}/preview", :layout => false)
+        @site.snippet = render_to_string(:file => "mercury/snippets/#{snippet_name}/preview", :layout => false)
       end
 
       #https://github.com/jejacks0n/mercury/issues/108
@@ -74,15 +74,21 @@ class SitesController < ApplicationController
         content[:value] = dom.xpath('//body').inner_html
       end
 
-      site.content = content[:value]
+      @site.content = content[:value]
 
     elsif params.has_key?(:site) #update subdomain only via the golive dialog
-      site.subdomain = params[:site][:subdomain]
+      @site.subdomain = params[:site][:subdomain]
     end
 
-    site.save!
-    # passing the current user ID to JS to redirect back to dashboard
+    @site.save!
     render text: current_user.id.to_s
+
+    #if site.save
+      ## passing the current user ID to JS to redirect back to dashboard
+      #if params.has_key?(:content)
+        #render text: current_user.id.to_s
+      #else
+        
   end
 
   def destroy
@@ -101,6 +107,21 @@ class SitesController < ApplicationController
     host = URI.parse(url).host
     parts = host.split('.')
     return host.start_with?('www') ? parts[1] : parts[0]
+  end
+
+  def normalize(subd)
+    same_sites = Site.where('subdomain like ?', "%#{subd}%")
+    case same_sites.count
+    when 0
+      subd
+    when 1
+      subd + '1'
+    else
+      subdomains = same_sites.pluck(:subdomain)
+      #http://stackoverflow.com/questions/2640819/extract-number-from-string-in-ruby
+      largest_idx = subdomains.map { |x| x[/\d+/].to_i }.sort.last
+      subd + (largest_idx.to_i + 1).to_s
+    end
   end
 
   def mobile_or_not
