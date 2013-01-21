@@ -15,9 +15,12 @@ $(document).delegate('.ui-page', 'pageinit', function () {
   $('img').error(function() {
     this.style.display = 'none';
   });
+
 });
 
 /*http://jsfiddle.net/budwhite/eKZLf/*/
 $('#home').live('pageshow',function(){
   window.slider = new Swipe(document.getElementById('slider'));
+  //$('#switch_to_classic').popup({history:false});
+  //$('#switch_to_classic').popup('open');
 });
