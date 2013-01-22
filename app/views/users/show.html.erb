@@ -46,7 +46,7 @@
       </h3> 
       <div class='input-large input-append'>
         <% if Rails.env.production? %>
-          <input style='height:34px' class='input-large' id='url_input' type='text' placeholder='Enter your site url here'></input>
+          <input style='height:29px' class='input-large' id='url_input' type='text' placeholder='Enter your site url here'></input>
         <% end %>
         <% if Rails.env.development? %>
           <input style='height:29px' class='input-large' id='url_input' type='text' placeholder='Enter your site url here' data-provide='typeahead' data-items='30' data-source='<%= get_test_sites %>'></input>
