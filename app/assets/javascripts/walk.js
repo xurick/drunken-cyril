@@ -190,6 +190,7 @@ var mdot = (function(my, $) {
 
       if($clonedLogo.is('img')) {
         size = mdot.util.getImageSize(logo.src);
+        $clonedLogo.removeAttr('align');
       }
 
       if( (size && (size.width<10 || size.height<10)) || !$clonedLogo.is('img')) {
