@@ -39,4 +39,3 @@ gem "active_attr", "~> 0.7.0"
 gem 'newrelic_rpm'
 gem "nokogiri", "~> 1.5.6"
 gem "jquery-cookie-rails", "~> 0.1.1"
-gem "google-analytics-rails", "~> 0.0.3"
