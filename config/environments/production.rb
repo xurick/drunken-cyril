@@ -89,4 +89,6 @@ MdotApp::Application.configure do
     password: ENV["GMAIL_SMTP_PASSWORD"]
   }
 
+  GA.tracker = "UA-37983247-1"
+
 end
