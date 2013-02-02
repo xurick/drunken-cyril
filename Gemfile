@@ -8,6 +8,9 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'sqlite3', '~> 1.3.6'
   gem 'debugger', '~> 1.2.2'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :production do
@@ -39,3 +42,4 @@ gem "active_attr", "~> 0.7.0"
 gem 'newrelic_rpm'
 gem "nokogiri", "~> 1.5.6"
 gem "jquery-cookie-rails", "~> 0.1.1"
+gem 'garb'

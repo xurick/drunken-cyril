@@ -21,7 +21,8 @@
       <% if true %>
         <div data-role="popup" id='switch_to_classic' class='ui-content' data-theme='e' data-overlay-theme='a'>
           <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
-          <p>Welcome to <%= @site.subdomain + '.com' %>'s mobile website. Tap <a href="<%= @site.url + '?no_redirect=1' %>">here</a> or the button at the end of this page to go to the full site. Thanks!</p>
+          <p>Welcome to <%= @site.subdomain + '.com' %>'s mobile website! Tap the button at the end of this page to go to the full site. </p>
+          <a href='#' data-rel='back' data-role='button' data-theme='b'>Continue</a>
         </div>
       <% end %>
     </div>
