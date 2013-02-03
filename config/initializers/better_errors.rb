@@ -1,1 +1,0 @@
-BetterErrors.editor = :macvim
