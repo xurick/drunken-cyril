@@ -1,0 +1,20 @@
+<% modalId = 'trafficModal_' + site.id.to_s %>
+<div id=<%= modalId %> class='modal hide fade'>
+  <div class='modal-header'>
+    <h3>Visitors to your mobile site</h3>
+  </div>
+  <div class='modal-body'>
+    <p>
+    <span class='label label-inverse'>visitors</span> 
+    <span class='badge badge-success visitors'><%= show_traffic(site, 7.days.ago, Date.today) %></span>
+    <div class='well'>
+      From <input class='span2 datepicker_from' />
+      to <input class='span2 datepicker_to' />
+      <button class='btn btn-success update_date'>Update</button>
+    </div>
+    </p>
+  </div>
+  <div class='modal-footer'>
+    <button class='btn' data-dismiss='modal'>Close</button>
+  </div>
+</div>

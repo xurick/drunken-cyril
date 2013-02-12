@@ -23,6 +23,39 @@ $(function() {
 
   $(selector).last().click();
 
+  var d = new Date(), start_date, end_date;
+  d.setDate(new Date().getDate()-7);
+
+  $("div[id^='trafficModal_']").each(function() {
+    $(this).on('shown', function() {
+      var id = this.id.slice(13); // getting the id number out of string 'trafficModal_XXX'
+      $(this).find('.datepicker_from').datepicker('setDate', d).on('changeDate', function() {
+        start_date = this.value;
+      });
+      $(this).find('.datepicker_to').datepicker({ todayBtn:'linked' }).datepicker('setValue').on('changeDate', function() {
+        end_date = this.value;
+      });
+      var that = this;
+      $(this).find('.update_date').click(function() {
+        $.ajax({
+          data: {
+            site_id: id,
+            start_date: start_date,
+            end_date: end_date
+          },
+          dataType: 'json'
+        }).done(function(data) {
+          $(that).find('.visitors').html(data);
+        }).fail(function() {
+          $(that).find('.visitors').html('0');
+        });
+        $(that).find('.visitors').html('querying ...');
+      });
+      start_date = $(this).find('.datepicker_from').val();
+      end_date = $(this).find('.datepicker_to').val();
+    });
+  });
+
 });
 
 function switchPreview(id) {

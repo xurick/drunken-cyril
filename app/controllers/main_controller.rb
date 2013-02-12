@@ -42,8 +42,8 @@ class MainController < ApplicationController
           # otherwise we return the most opaque, ie having greatest alpha value
           chosen_color = color_array.sort_by { |k| -k[3] }[0]
 
-          logger.debug "color array: #{color_array}"
-          logger.debug "chosen color: #{chosen_color}"
+          #logger.debug "color array: #{color_array}"
+          #logger.debug "chosen color: #{chosen_color}"
 
           render :json => JSON.dump({
             'red'=>chosen_color[0],
@@ -53,7 +53,7 @@ class MainController < ApplicationController
 
         when 'imgsize'
           size = FastImage.size(url)
-          logger.debug size
+          #logger.debug size
           render :json => JSON.dump({
             'width' => size[0],
             'height' => size[1]

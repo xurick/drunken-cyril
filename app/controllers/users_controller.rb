@@ -6,18 +6,30 @@ class UsersController < ApplicationController
 
   def show
 
-    # creating the addresses instance without saving to DB, if the user does not yet have
-    # an addresses record
-    #@user.addresses.build if @user.addresses.blank?
+    respond_to do |format|
+      format.html do
+        # creating the addresses instance without saving to DB, if the user does not yet have
+        # an addresses record
+        #@user.addresses.build if @user.addresses.blank?
+        #@site = @user.sites
+        # ditto for weekday hours
+        #days_of_week = %w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday) 
+        #days_of_week.each do |day_of_week|
+          #weekday_hours = @user.send("#{day_of_week.downcase}_business_hours")
+          #weekday_hours.build(:day_of_week => day_of_week) if weekday_hours.blank?
+        #end
+      end
 
-    @site = @user.sites.find_by_user_id(@user.id)
-
-    # ditto for weekday hours
-    days_of_week = %w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday) 
-    days_of_week.each do |day_of_week|
-      weekday_hours = @user.send("#{day_of_week.downcase}_business_hours")
-      weekday_hours.build(:day_of_week => day_of_week) if weekday_hours.blank?
+      format.json do
+        site = @user.sites.find(params[:site_id])
+        #http://apidock.com/rails/AbstractController/Rendering/view_context
+        visitors = view_context.show_traffic(site, 
+                                Date.strptime(params[:start_date], '%m/%d/%Y'),
+                                Date.strptime(params[:end_date], '%m/%d/%Y'))
+        render :json => JSON.dump(visitors)
+      end
     end
+
   end
 
   def new

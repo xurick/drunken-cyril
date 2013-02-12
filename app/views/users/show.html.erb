@@ -29,7 +29,10 @@
                 <%= render :partial => 'goLiveModal', :locals => { :site => site } %>
               </td>
               <td>
-                <a rel='tooltip' title='Coming soon!' class='btn btn-success disabled' href='#'><i class='icon-facetime-video icon-large'></i> Traffic</a>
+                <%= link_to('#trafficModal_' + site.id.to_s, class: 'btn btn-success', data: { toggle: 'modal' }, rel: 'tooltip', title: 'See how many people have visited your mobile site') do %>
+                  <i class='icon-facetime-video icon-large'></i> Traffic
+                <% end %>
+                <%= render :partial => 'trafficModal', :locals => { :site => site } %>
               </td>
               <td>
                 <%= link_to(site, class: 'btn btn-danger', method: :delete, data: { confirm: site.subdomain + '.com' }) do %>

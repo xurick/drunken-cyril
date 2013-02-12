@@ -42,4 +42,7 @@ gem "active_attr", "~> 0.7.0"
 gem 'newrelic_rpm'
 gem "nokogiri", "~> 1.5.6"
 gem "jquery-cookie-rails", "~> 0.1.1"
-gem 'garb'
+#gem 'garb', :git => 'git://github.com/clifff/garb.git'
+gem 'garb', :git => 'git://github.com/Sija/garb.git'
+gem 'bootstrap-datepicker-rails'
+gem 'figaro'

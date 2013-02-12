@@ -16,6 +16,7 @@
 //= require jquery.spin
 //= require jquery.countdown
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require theme
 //= require init
 //= require util
