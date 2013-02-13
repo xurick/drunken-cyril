@@ -202,9 +202,9 @@ var mdot = (function(my, $) {
       $clonedLogo.attr('id','logo').wrap("<div class='logoWrapper' />");
       $clonedLogo.removeAttr('width').removeAttr('height');
 
-      var color = mdot.util.findBgColor(logo);
-      if(color != '')
-        $clonedLogo.parent().css('background-color', color);
+      //var color = mdot.util.findBgColor(logo);
+      //if(color != '')
+        //$clonedLogo.parent().css('background-color', color);
 
       // if we found a logo, use it
       mobilePage.logo = $clonedLogo.parent()[0].outerHTML;
