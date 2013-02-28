@@ -7,7 +7,9 @@
 <% content_for :action_buttons do %>
   <div id='buttons' data-mercury='snippets'>
     <a href='tel:<%= @site.phone %>' 
-      id='tap_to_call'
+      <% if Rails.env.production? %>
+        onclick="_gaq.push(['_trackEvent', 'ActionButtons', 'Tap', 'Tap to call']);"
+      <% end %>
       data-role='button' 
       data-inline='false' 
       data-icon='phone'>Call Us!
