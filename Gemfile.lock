@@ -199,6 +199,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-datepicker-rails
   bootstrap-sass (~> 2.2.1.1)
+  coffee-script-source (~> 1.4.0)
   debugger (~> 1.2.2)
   fastimage (= 1.2.13)
   figaro
