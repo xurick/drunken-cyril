@@ -2,7 +2,7 @@
 class GA
   extend Garb::Model
 
-  metrics :visitors
+  metrics :visitors, :total_events
   dimensions :hostname
 
   attr_reader :profile
@@ -24,5 +24,14 @@ class GA
       :start_date => start_date,
       :end_date => end_date
     ).to_a.first.try(:visitors)
+  end
+
+  def totalEvents(subdomain, start_date, end_date)
+    GA.results(
+      profile,
+      :filters => { :hostname.contains => "^#{subdomain}\.mbilify\.com$" },
+      :start_date => start_date,
+      :end_date => end_date
+    ).to_a.first.try(:total_events)
   end
 end

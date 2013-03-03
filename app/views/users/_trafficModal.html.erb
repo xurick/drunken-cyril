@@ -5,8 +5,11 @@
   </div>
   <div class='modal-body'>
     <p>
-    <span class='label label-inverse'>visitors</span> 
-    <span class='badge badge-success visitors'><%= show_traffic(site, 7.days.ago, Date.today) %></span>
+    <span class='label label-inverse'>Visitors</span> 
+    <span class='badge badge-success visitors'><%= show_traffic(site, 7.days.ago, Date.today)['visitors'] %></span>
+
+    <span class='label label-inverse'>Tap to calls</span> 
+    <span class='badge badge-success taps'><%= show_traffic(site, 7.days.ago, Date.today)['taps'] %></span>
     <div class='well'>
       From <input class='span2 datepicker_from' />
       to <input class='span2 datepicker_to' />

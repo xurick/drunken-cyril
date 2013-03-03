@@ -46,4 +46,5 @@ gem "jquery-cookie-rails", "~> 0.1.1"
 gem 'garb', :git => 'git://github.com/Sija/garb.git'
 gem 'bootstrap-datepicker-rails'
 gem 'figaro'
+# temporary: https://github.com/jejacks0n/mercury/issues/349
 gem "coffee-script-source", "~> 1.4.0"

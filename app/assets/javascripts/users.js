@@ -45,11 +45,14 @@ $(function() {
           },
           dataType: 'json'
         }).done(function(data) {
-          $(that).find('.visitors').html(data);
+          $(that).find('.visitors').html(data['visitors']);
+          $(that).find('.taps').html(data['taps']);
         }).fail(function() {
           $(that).find('.visitors').html('0');
+          $(that).find('.taps').html('0');
         });
         $(that).find('.visitors').html('querying ...');
+        $(that).find('.taps').html('querying ...');
       });
       start_date = $(this).find('.datepicker_from').val();
       end_date = $(this).find('.datepicker_to').val();

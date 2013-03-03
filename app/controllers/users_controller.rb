@@ -23,10 +23,10 @@ class UsersController < ApplicationController
       format.json do
         site = @user.sites.find(params[:site_id])
         #http://apidock.com/rails/AbstractController/Rendering/view_context
-        visitors = view_context.show_traffic(site, 
+        traffic = view_context.show_traffic(site, 
                                 Date.strptime(params[:start_date], '%m/%d/%Y'),
                                 Date.strptime(params[:end_date], '%m/%d/%Y'))
-        render :json => JSON.dump(visitors)
+        render :json => JSON.dump(traffic)
       end
     end
 
